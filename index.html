@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>केदार सिंह पडियार बिष्ट ग्राम जुवा वंशावली</title>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f4f7f6; padding: 12px; margin: 0; }
+        
+        .main-page-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 10px auto 18px;
+            max-width: 1400px;
+            padding: 12px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-bottom: 4px solid #27ae60;
+        }
+
+        .top-bar { max-width: 1400px; margin: 0 auto 15px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .search-container { flex-grow: 1; max-width: 450px; }
+        .search-input { width: 100%; padding: 10px 16px; font-size: 15px; border: 2px solid #bdc3c7; border-radius: 25px; outline: none; transition: 0.2s; }
+        .search-input:focus { border-color: #27ae60; background: #fff; }
+        .admin-toggle-btn { background: #2c3e50; color: white; border: none; padding: 10px 18px; border-radius: 25px; font-size: 13px; font-weight: bold; cursor: pointer; white-space: nowrap; }
+
+        .editor-panel { display: none; background: #2c3e50; color: white; padding: 12px 18px; border-radius: 8px; margin: 0 auto 15px; max-width: 1400px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .admin-header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .admin-title { margin: 0; font-size: 16px; }
+        .shortcut-info { font-size: 12px; color: #bdc3c7; margin-top: 4px; }
+        .admin-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        
+        .btn-turn-all-off { background: #8e44ad; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .btn-turn-all-off:hover { background: #732d91; }
+        .btn-change-pass { background: #f39c12; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .btn-change-pass:hover { background: #d68910; }
+        .btn-logout { background: #e74c3c; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .btn-logout:hover { background: #c0392b; }
+        
+        .status-box { background: #16a085; color: white; display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .dot { height: 8px; width: 8px; background-color: #2ecc71; border-radius: 50%; display: inline-block; margin-right: 6px; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+
+        .container { max-width: 1400px; margin: 0 auto; background: #fff; padding: 20px 15px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .tree-root { display: flex; justify-content: center; margin-bottom: 25px; }
+        .node-root { background: #2c3e50; color: white; padding: 12px 28px; border-radius: 8px; font-size: 20px; font-weight: bold; outline: none; min-width: 160px; text-align: center; }
+        
+        .level-1 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        @media (max-width: 1024px) { .level-1 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .level-1 { grid-template-columns: 1fr; } body { padding: 8px; } .container { padding: 12px 6px; } }
+
+        .branch-column { background: #fcfdfe; border: 2px solid #e2e8f0; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; }
+        .branch-header { background: #34495e; color: white; padding: 10px; text-align: center; border-radius: 6px; font-weight: bold; margin-bottom: 12px; outline: none; font-size: 16px; }
+        
+        .children-list { display: flex; flex-direction: column; gap: 10px; }
+        
+        /* कॉम्पैक्ट कार्ड स्टाइल */
+        .child-card { background: #fff; border-left: 5px solid #27ae60; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 5px; display: flex; flex-direction: column; gap: 6px; position: relative; }
+        .child-card.selected-card { border: 2px solid #e74c3c !important; background: #fffefe; }
+        
+        .name-row { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+        .name-with-photo { display: flex; align-items: center; gap: 8px; width: 100%; }
+        .child-name { font-size: 14px; color: #2c3e50; font-weight: bold; outline: none; flex-grow: 1; line-height: 1.3; }
+        .child-name span { font-size: 12px; color: #7f8c8d; font-weight: normal; margin-right: 4px; }
+        
+        .action-btn-container { display: flex; gap: 5px; align-items: center; }
+        .delete-btn { background: #e74c3c; color: white; border: none; min-width: 20px; height: 20px; border-radius: 50%; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-left: auto; }
+        .toggle-btn { background: #3498db; color: white; border: none; padding: 4px 7px; font-size: 10px; border-radius: 3px; cursor: pointer; font-weight: bold; }
+        .info-btn { background: #9b59b6; color: white; border: none; padding: 4px 7px; font-size: 10px; border-radius: 3px; cursor: pointer; font-weight: bold; }
+        
+        /* ON/OFF स्विच बटन */
+        .switch-toggle-btn { border: none; padding: 3px 6px; font-size: 10px; border-radius: 3px; font-weight: bold; cursor: pointer; }
+        .switch-on { background: #27ae60 !important; color: white !important; }
+        .switch-off { background: #7f8c8d !important; color: white !important; }
+        
+        .member-photo-preview { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #27ae60; display: none; flex-shrink: 0; cursor: pointer; }
+
+        .add-btn { background: #2ecc71; color: white; border: none; padding: 5px 10px; font-size: 11px; border-radius: 3px; cursor: pointer; margin-top: 5px; align-self: flex-start; font-weight: bold; }
+        .add-main-btn { background: #e74c3c; color: white; border: none; padding: 7px 10px; font-size: 12px; border-radius: 4px; cursor: pointer; margin-top: 10px; font-weight: bold; width: 100%; text-align: center; }
+        
+        .sub-children-container { display: none; background: #f8fafc; border-left: 2px dashed #95a5a6; padding-left: 8px; margin-top: 5px; }
+        
+        .child-name:focus, .branch-header:focus, .node-root:focus { background-color: #fff9e6 !important; color: #000 !important; border-radius: 3px; }
+
+        /* जब एडमिन बंद हो (पब्लिक व्यू) */
+        body:not(.admin-on) .add-btn,
+        body:not(.admin-on) .add-main-btn,
+        body:not(.admin-on) .delete-btn,
+        body:not(.admin-on) .switch-toggle-btn {
+            display: none !important;
+        }
+
+        /* यदि विवरण OFF (प्राइवेट) हो तो पब्लिक को विवरण बटन व फोटो न दिखे */
+        body:not(.admin-on) .child-card[data-private="true"] .info-btn,
+        body:not(.admin-on) .child-card[data-private="true"] .member-photo-preview {
+            display: none !important;
+        }
+
+        .search-match { background: #ffeaa7 !important; border: 2px solid #fdcb6e !important; }
+
+        /* पॉपअप मॉडल */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.65); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+        .login-modal { background: #fff; padding: 20px; border-radius: 10px; width: 100%; max-width: 350px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); position: relative; }
+        .login-modal h3 { margin-top: 0; color: #2c3e50; text-align: center; font-size: 16px; }
+        .password-field-container { position: relative; margin: 15px 0; }
+        .password-field-container input { width: 100%; padding: 10px 38px 10px 10px; font-size: 14px; border: 1px solid #bdc3c7; border-radius: 5px; outline: none; }
+        .eye-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none; font-size: 18px; }
+        .modal-buttons { display: flex; justify-content: space-between; gap: 8px; margin-top: 15px; }
+        .modal-buttons button { flex: 1; padding: 8px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 13px; }
+        .btn-login-submit { background: #27ae60; color: white; }
+        .btn-login-cancel { background: #95a5a6; color: white; }
+
+        .detail-field { margin-bottom: 10px; text-align: left; }
+        .detail-field label { display: block; font-weight: bold; font-size: 12px; color: #34495e; margin-bottom: 3px; }
+        .detail-field input, .detail-field textarea { width: 100%; padding: 7px 9px; border: 1px solid #bdc3c7; border-radius: 4px; font-size: 13px; outline: none; }
+        .modal-photo-preview { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2px solid #27ae60; margin: 0 auto 8px; display: block; cursor: pointer; }
+
+        /* फोटो बड़ा देखने के लिए लाइटबॉक्स */
+        #lightboxModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; justify-content: center; align-items: center; }
+        #lightboxImage { max-width: 90%; max-height: 85%; border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        #closeLightbox { position: absolute; top: 20px; right: 25px; color: white; font-size: 35px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="main-page-title">केदार सिंह पडियार बिष्ट ग्राम जुवा वंशावली</div>
+
+<div class="top-bar">
+    <div class="search-container">
+        <input type="text" class="search-input" id="searchBox" placeholder="🔍 नाम खोजें (उदा: खुशहाल, दौलत)..." onkeyup="searchFamily()">
+    </div>
+    <button class="admin-toggle-btn" id="adminToggle" onclick="openLoginModal()">🔒 एडमिन लॉगिन</button>
+</div>
+
+<!-- एडमिन पैनल -->
+<div class="editor-panel" id="adminPanel">
+    <div class="admin-header-flex">
+        <div>
+            <h3 class="admin-title">🛠️ वंशावली एडिटर पैनल</h3>
+            <div class="shortcut-info">⌨️ PC शॉर्टकट: <b>Ctrl+Z</b> (Undo) | <b>Ctrl+Y</b> (Redo) | कार्ड चुनकर <b>Delete</b> दबाएं</div>
+        </div>
+        <div class="admin-actions">
+            <div class="status-box"><span class="dot"></span><span id="saveStatus">कनेक्ट हो रहा है...</span></div>
+            <button class="btn-turn-all-off" onclick="forceTurnAllOff()">🔒 सभी को OFF करें</button>
+            <button class="btn-change-pass" onclick="openChangePassModal()">🔑 पासवर्ड बदलें</button>
+            <button class="btn-logout" onclick="adminLogout()">लॉगआउट ✖</button>
+        </div>
+    </div>
+</div>
+
+<!-- फैमिली ट्री कंटेनर -->
+<div class="container" id="treeContainer">
+    <div class="tree-root">
+        <div class="node-root" contenteditable="false" id="root">केदार सिंह बिष्ट</div>
+    </div>
+    <div class="level-1">
+        <div class="branch-column">
+            <div class="branch-header" contenteditable="false" id="bh1">१. ज्ञान सिंह</div>
+            <div class="children-list" id="list_1"></div>
+            <button class="add-main-btn" onclick="addNewMainBox('list_1')">+ नया नाम जोड़ें</button>
+        </div>
+        <div class="branch-column">
+            <div class="branch-header" contenteditable="false" id="bh2">२. दौलत सिंह</div>
+            <div class="children-list" id="list_2"></div>
+            <button class="add-main-btn" onclick="addNewMainBox('list_2')">+ नया नाम जोड़ें</button>
+        </div>
+        <div class="branch-column">
+            <div class="branch-header" contenteditable="false" id="bh3">३. गोकुल सिंह</div>
+            <div class="children-list" id="list_3"></div>
+            <button class="add-main-btn" onclick="addNewMainBox('list_3')">+ नया नाम जोड़ें</button>
+        </div>
+        <div class="branch-column">
+            <div class="branch-header" contenteditable="false" id="bh4">४. भीम सिंह</div>
+            <div class="children-list" id="list_4"></div>
+            <button class="add-main-btn" onclick="addNewMainBox('list_4')">+ नया नाम जोड़ें</button>
+        </div>
+    </div>
+</div>
+
+<!-- विवरण पॉपअप -->
+<div class="modal-overlay" id="detailsModal">
+    <div class="login-modal">
+        <h3 id="modalMemberNameTitle">📝 सदस्य विवरण</h3>
+
+        <div style="text-align: center;">
+            <img id="modalPhotoPreview" src="" class="modal-photo-preview" style="display:none;" alt="Photo" title="बड़ा देखने के लिए क्लिक करें" onclick="showBigPhoto(this.src)">
+            <small id="photoClickHint" style="display:none; color:#7f8c8d; font-size:10px;">🔍 बड़ा देखने के लिए फोटो पर क्लिक करें</small>
+            <div id="photoUploadContainer" style="margin-top: 6px;">
+                <input type="file" accept="image/*" id="modalPhotoInput" onchange="handleModalPhoto(this)" style="font-size: 11px;">
+            </div>
+        </div>
+
+        <div class="detail-field" style="margin-top: 8px;">
+            <label>📞 फोन नंबर:</label>
+            <input type="text" id="modalPhoneInput" placeholder="उपलब्ध नहीं">
+        </div>
+
+        <div class="detail-field">
+            <label>🏠 पता:</label>
+            <textarea id="modalAddressInput" rows="2" placeholder="उपलब्ध नहीं"></textarea>
+        </div>
+
+        <div class="modal-buttons">
+            <button class="btn-login-submit" id="btnSaveDetails" onclick="saveMemberDetails()">💾 सुरक्षित करें</button>
+            <button class="btn-login-cancel" onclick="closeDetailsModal()">बंद करें</button>
+        </div>
+    </div>
+</div>
+
+<!-- बड़ा फोटो देखने के लिए लाइटबॉक्स -->
+<div id="lightboxModal" onclick="closeBigPhoto()">
+    <span id="closeLightbox">&times;</span>
+    <img id="lightboxImage" src="" alt="Full View">
+</div>
+
+<!-- लॉगिन पॉपअप -->
+<div class="modal-overlay" id="loginModal">
+    <div class="login-modal">
+        <h3>🔑 एडमिन पासवर्ड</h3>
+        <div class="password-field-container">
+            <input type="password" id="adminPasswordInput" placeholder="पासवर्ड लिखें">
+            <span class="eye-icon" onclick="togglePasswordEye('adminPasswordInput', this)">👁️</span>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn-login-submit" onclick="submitLogin()">लॉगिन</button>
+            <button class="btn-login-cancel" onclick="closeLoginModal()">रद्द करें</button>
+        </div>
+    </div>
+</div>
+
+<!-- पासवर्ड बदलने का पॉपअप -->
+<div class="modal-overlay" id="changePassModal">
+    <div class="login-modal">
+        <h3>🔑 नया पासवर्ड बनाएं</h3>
+        <div class="password-field-container">
+            <input type="password" id="newPasswordInput" placeholder="नया पासवर्ड दर्ज करें">
+            <span class="eye-icon" onclick="togglePasswordEye('newPasswordInput', this)">👁️</span>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn-login-submit" onclick="saveNewPassword()">सुरक्षित करें</button>
+            <button class="btn-login-cancel" onclick="closeChangePassModal()">रद्द करें</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let DEFAULT_ADMIN_PASSWORD = "admin123";
+    let isAdmin = false;
+    let selectedCard = null;
+    let currentEditingCard = null;
+
+    let undoStack = [];
+    let redoStack = [];
+    const MAX_HISTORY = 30;
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAgXSM8FOd66X_S6YiL6_6IklecwPC-rM",
+        authDomain: "vanshavali-78248.firebaseapp.com",
+        databaseURL: "https://vanshavali-78248-default-rtdb.firebaseio.com",
+        projectId: "vanshavali-78248",
+        storageBucket: "vanshavali-78248.firebasestorage.app",
+        messagingSenderId: "810845496468",
+        appId: "1:810845496468:web:1f979311fbf3f390b28081"
+    };
+
+    let isFirebaseReady = false;
+    let dbRef = null;
+    let passRef = null;
+
+    try {
+        firebase.initializeApp(firebaseConfig);
+        dbRef = firebase.database().ref('vanshavali_tree_data');
+        passRef = firebase.database().ref('vanshavali_admin_password');
+        isFirebaseReady = true;
+    } catch(e) {
+        console.warn("Firebase offline");
+    }
+
+    function loadData() {
+        const localPass = localStorage.getItem('vanshavali_custom_password');
+        if (localPass) DEFAULT_ADMIN_PASSWORD = localPass;
+        
+        const localData = localStorage.getItem('padiyar_advanced_html');
+        if (localData) renderLoadedHTML(localData);
+
+        if (isFirebaseReady) {
+            passRef.once('value').then(snap => {
+                if (snap.val()) DEFAULT_ADMIN_PASSWORD = snap.val();
+            });
+
+            dbRef.once('value').then(snapshot => {
+                const data = snapshot.val();
+                if (data) {
+                    renderLoadedHTML(data);
+                    document.getElementById('saveStatus').innerText = "Firebase ऑनलाइन 🟢";
+                }
+            }).catch(() => {
+                document.getElementById('saveStatus').innerText = "लोकल मोड 🟠";
+            });
+        }
+    }
+
+    function renderLoadedHTML(html) {
+        document.getElementById('treeContainer').innerHTML = html;
+        refreshButtonsAndEvents();
+        
+        document.querySelectorAll('.sub-children-container').forEach(c => c.style.display = "none");
+        document.querySelectorAll('.toggle-btn').forEach(btn => btn.innerText = "संतान देखें 🔽");
+        
+        updatePhotoVisibility();
+        updateEditableState();
+    }
+
+    function refreshButtonsAndEvents() {
+        document.querySelectorAll('.member-details-drawer').forEach(el => el.remove());
+
+        document.querySelectorAll('.child-card').forEach(card => {
+            if (!card.hasAttribute('data-private')) card.setAttribute('data-private', 'true');
+            if (!card.hasAttribute('data-phone')) card.setAttribute('data-phone', '');
+            if (!card.hasAttribute('data-address')) card.setAttribute('data-address', '');
+            if (!card.hasAttribute('data-photo')) card.setAttribute('data-photo', '');
+
+            const isPriv = card.getAttribute('data-private') === 'true';
+
+            const img = card.querySelector('.member-photo-preview');
+            if (img) {
+                img.onclick = function(e) {
+                    e.stopPropagation();
+                    showBigPhoto(this.src);
+                };
+            }
+
+            let switchBtn = card.querySelector('.switch-toggle-btn');
+            if (!switchBtn) {
+                switchBtn = document.createElement('button');
+                const actionBtns = card.querySelector('.action-btn-container');
+                if (actionBtns) actionBtns.insertBefore(switchBtn, actionBtns.firstChild);
+            }
+            if (switchBtn) {
+                switchBtn.className = 'switch-toggle-btn ' + (isPriv ? 'switch-off' : 'switch-on');
+                switchBtn.innerText = isPriv ? '⚪ OFF' : '🟢 ON';
+                switchBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    toggleSwitch(this);
+                };
+            }
+
+            let infoBtn = card.querySelector('.info-btn');
+            if (infoBtn) {
+                infoBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    openDetailsModal(this);
+                };
+            }
+
+            let toggleBtn = card.querySelector('.toggle-btn');
+            if (toggleBtn) {
+                toggleBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    toggleVisibility(this);
+                };
+            }
+
+            let deleteBtn = card.querySelector('.delete-btn');
+            if (deleteBtn) {
+                deleteBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    deleteBox(this);
+                };
+            }
+
+            let addSubBtn = card.querySelector('.add-btn');
+            if (addSubBtn) {
+                addSubBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    addNewSubBox(this);
+                };
+            }
+        });
+    }
+
+    function forceTurnAllOff() {
+        if (!isAdmin) return;
+        if (!confirm("क्या आप वाकई सभी सदस्यों का विवरण OFF (प्राइवेट) करना चाहते हैं?")) return;
+        
+        document.querySelectorAll('.child-card').forEach(card => {
+            card.setAttribute('data-private', 'true');
+            const switchBtn = card.querySelector('.switch-toggle-btn');
+            if (switchBtn) {
+                switchBtn.className = 'switch-toggle-btn switch-off';
+                switchBtn.innerText = '⚪ OFF';
+            }
+        });
+        
+        updatePhotoVisibility();
+        saveState(true);
+        alert("✅ सभी सदस्यों का विवरण OFF कर दिया गया है! अब आप जिसे चाहें सिर्फ उसे ON कर सकते हैं।");
+    }
+
+    function toggleSwitch(btn) {
+        if (!isAdmin) return;
+        const card = btn.closest('.child-card');
+        const isPriv = card.getAttribute('data-private') === 'true';
+
+        if (isPriv) {
+            card.setAttribute('data-private', 'false');
+            btn.className = 'switch-toggle-btn switch-on';
+            btn.innerText = '🟢 ON';
+        } else {
+            card.setAttribute('data-private', 'true');
+            btn.className = 'switch-toggle-btn switch-off';
+            btn.innerText = '⚪ OFF';
+        }
+        updatePhotoVisibility();
+        saveState(true);
+    }
+
+    function updatePhotoVisibility() {
+        document.querySelectorAll('.child-card').forEach(card => {
+            const isPriv = card.getAttribute('data-private') === 'true';
+            const photoData = card.getAttribute('data-photo');
+            const img = card.querySelector('.member-photo-preview');
+            if (img) {
+                if (photoData && photoData !== "") {
+                    img.src = photoData;
+                    img.style.display = (isAdmin || !isPriv) ? "block" : "none";
+                } else {
+                    img.style.display = "none";
+                }
+            }
+        });
+    }
+
+    function showBigPhoto(src) {
+        if (!src || src === window.location.href || src === "") return;
+        const modal = document.getElementById('lightboxModal');
+        const img = document.getElementById('lightboxImage');
+        img.src = src;
+        modal.style.display = 'flex';
+    }
+
+    function closeBigPhoto() {
+        document.getElementById('lightboxModal').style.display = 'none';
+        document.getElementById('lightboxImage').src = "";
+    }
+
+    let saveTimeout = null;
+    function saveState(recordHistory = true) {
+        if (!isAdmin) return;
+
+        const currentHTML = document.getElementById('treeContainer').innerHTML;
+
+        if (recordHistory) {
+            undoStack.push(currentHTML);
+            if (undoStack.length > MAX_HISTORY) undoStack.shift();
+            redoStack = [];
+        }
+
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+            localStorage.setItem('padiyar_advanced_html', currentHTML);
+            if (isFirebaseReady) dbRef.set(currentHTML);
+        }, 300);
+    }
+
+    function openDetailsModal(btn) {
+        currentEditingCard = btn.closest('.child-card');
+        const nameEl = currentEditingCard.querySelector('.child-name');
+        document.getElementById('modalMemberNameTitle').innerText = '📝 ' + (nameEl ? nameEl.innerText.replace('-', '').trim() : 'सदस्य विवरण');
+
+        const phone = currentEditingCard.getAttribute('data-phone') || '';
+        const address = currentEditingCard.getAttribute('data-address') || '';
+        const photo = currentEditingCard.getAttribute('data-photo') || '';
+
+        const phoneInput = document.getElementById('modalPhoneInput');
+        const addrInput = document.getElementById('modalAddressInput');
+        const photoInputBox = document.getElementById('photoUploadContainer');
+        const saveBtn = document.getElementById('btnSaveDetails');
+        const imgPrev = document.getElementById('modalPhotoPreview');
+        const clickHint = document.getElementById('photoClickHint');
+
+        phoneInput.value = phone;
+        addrInput.value = address;
+
+        if (photo && photo !== '') {
+            imgPrev.src = photo;
+            imgPrev.style.display = 'block';
+            clickHint.style.display = 'block';
+        } else {
+            imgPrev.style.display = 'none';
+            clickHint.style.display = 'none';
+        }
+
+        if (!isAdmin) {
+            phoneInput.readOnly = true;
+            addrInput.readOnly = true;
+            photoInputBox.style.display = 'none';
+            saveBtn.style.display = 'none';
+        } else {
+            phoneInput.readOnly = false;
+            addrInput.readOnly = false;
+            photoInputBox.style.display = 'block';
+            saveBtn.style.display = 'block';
+        }
+
+        document.getElementById('detailsModal').style.display = 'flex';
+    }
+
+    function closeDetailsModal() {
+        document.getElementById('detailsModal').style.display = 'none';
+        currentEditingCard = null;
+    }
+
+    function handleModalPhoto(input) {
+        if (!isAdmin || !input.files[0]) return;
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.src = e.target.result;
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const MAX_SIZE = 160;
+                let w = img.width, h = img.height;
+                if (w > h) { if (w > MAX_SIZE) { h *= MAX_SIZE / w; w = MAX_SIZE; } }
+                else { if (h > MAX_SIZE) { w *= MAX_SIZE / h; h = MAX_SIZE; } }
+                canvas.width = w; canvas.height = h;
+                ctx.drawImage(img, 0, 0, w, h);
+                const compressed = canvas.toDataURL('image/jpeg', 0.75);
+
+                const prev = document.getElementById('modalPhotoPreview');
+                prev.src = compressed;
+                prev.style.display = 'block';
+                document.getElementById('photoClickHint').style.display = 'block';
+                currentEditingCard.setAttribute('data-photo', compressed);
+            };
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function saveMemberDetails() {
+        if (!isAdmin || !currentEditingCard) return;
+
+        currentEditingCard.setAttribute('data-phone', document.getElementById('modalPhoneInput').value.trim());
+        currentEditingCard.setAttribute('data-address', document.getElementById('modalAddressInput').value.trim());
+
+        updatePhotoVisibility();
+        saveState(true);
+        closeDetailsModal();
+        alert('✅ विवरण सुरक्षित हो गया!');
+    }
+
+    function togglePasswordEye(inputId, iconEl) {
+        const input = document.getElementById(inputId);
+        if (input.type === "password") {
+            input.type = "text"; iconEl.innerText = "🙈";
+        } else {
+            input.type = "password"; iconEl.innerText = "👁️";
+        }
+    }
+
+    function openLoginModal() {
+        document.getElementById('adminPasswordInput').value = "";
+        document.getElementById('loginModal').style.display = "flex";
+        document.getElementById('adminPasswordInput').focus();
+    }
+    function closeLoginModal() { document.getElementById('loginModal').style.display = "none"; }
+
+    function submitLogin() {
+        if (document.getElementById('adminPasswordInput').value === DEFAULT_ADMIN_PASSWORD) {
+            isAdmin = true;
+            document.body.classList.add('admin-on');
+            document.getElementById('adminPanel').style.display = "block";
+            document.getElementById('adminToggle').style.display = "none";
+            closeLoginModal();
+            refreshButtonsAndEvents();
+            updateEditableState();
+            updatePhotoVisibility();
+            undoStack = [document.getElementById('treeContainer').innerHTML];
+            alert("✅ एडमिन मोड चालू हो गया है!");
+        } else {
+            alert("❌ गलत पासवर्ड!");
+        }
+    }
+
+    function adminLogout() {
+        isAdmin = false;
+        document.body.classList.remove('admin-on');
+        document.getElementById('adminPanel').style.display = "none";
+        document.getElementById('adminToggle').style.display = "block";
+        if (selectedCard) { selectedCard.classList.remove('selected-card'); selectedCard = null; }
+        refreshButtonsAndEvents();
+        updateEditableState();
+        updatePhotoVisibility();
+        alert("🔒 एडमिन मोड बंद हो गया है।");
+    }
+
+    function openChangePassModal() {
+        document.getElementById('newPasswordInput').value = "";
+        document.getElementById('changePassModal').style.display = "flex";
+        document.getElementById('newPasswordInput').focus();
+    }
+    function closeChangePassModal() { document.getElementById('changePassModal').style.display = "none"; }
+
+    function saveNewPassword() {
+        const newPass = document.getElementById('newPasswordInput').value.trim();
+        if (newPass.length < 4) {
+            alert("⚠️ कृपया कम से कम 4 अक्षरों का पासवर्ड दर्ज करें!"); return;
+        }
+        DEFAULT_ADMIN_PASSWORD = newPass;
+        localStorage.setItem('vanshavali_custom_password', newPass);
+        if (isFirebaseReady) passRef.set(newPass);
+        closeChangePassModal();
+        alert("🎉 नया एडमिन पासवर्ड सुरक्षित कर दिया गया है!");
+    }
+
+    function updateEditableState() {
+        document.querySelectorAll('.child-name, .branch-header, .node-root').forEach(el => {
+            el.setAttribute('contenteditable', isAdmin ? 'true' : 'false');
+            el.removeEventListener('input', onInput);
+            if (isAdmin) el.addEventListener('input', onInput);
+        });
+    }
+
+    let timer = null;
+    function onInput() {
+        if (!isAdmin) return;
+        clearTimeout(timer);
+        timer = setTimeout(() => saveState(true), 500);
+    }
+
+    function undoAction() {
+        if (!isAdmin || undoStack.length <= 1) return;
+        redoStack.push(undoStack.pop());
+        applyState(undoStack[undoStack.length - 1]);
+    }
+    function redoAction() {
+        if (!isAdmin || redoStack.length === 0) return;
+        const next = redoStack.pop();
+        undoStack.push(next);
+        applyState(next);
+    }
+    function applyState(html) {
+        document.getElementById('treeContainer').innerHTML = html;
+        refreshButtonsAndEvents();
+        updatePhotoVisibility();
+        updateEditableState();
+        saveState(false);
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (!isAdmin) return;
+        const isTyping = ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName) || document.activeElement.isContentEditable;
+
+        if (e.ctrlKey && !e.shiftKey && e.key.toLowerCase() === 'z') {
+            e.preventDefault(); undoAction();
+        }
+        if ((e.ctrlKey && e.key.toLowerCase() === 'y') || (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'z')) {
+            e.preventDefault(); redoAction();
+        }
+        if (e.key === 'Delete' && selectedCard && !isTyping) {
+            e.preventDefault();
+            const btn = selectedCard.querySelector('.delete-btn');
+            if (btn) deleteBox(btn);
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!isAdmin) return;
+        const card = e.target.closest('.child-card');
+        if (card) {
+            if (selectedCard && selectedCard !== card) selectedCard.classList.remove('selected-card');
+            selectedCard = card;
+            selectedCard.classList.add('selected-card');
+        } else if (!e.target.closest('.delete-btn') && !e.target.closest('.modal-overlay') && !e.target.closest('#lightboxModal')) {
+            if (selectedCard) {
+                selectedCard.classList.remove('selected-card');
+                selectedCard = null;
+            }
+        }
+    });
+
+    function createCardHTML() {
+        return `
+            <div class="name-row">
+                <div class="name-with-photo">
+                    <img src="" class="member-photo-preview" alt="photo" onclick="showBigPhoto(this.src)">
+                    <div class="child-name" contenteditable="true">-</div>
+                </div>
+                <div class="action-btn-container">
+                    <button class="switch-toggle-btn switch-off" onclick="toggleSwitch(this)" title="पब्लिक को दिखाने के लिए ON/OFF करें">⚪ OFF</button>
+                    <button class="info-btn" onclick="openDetailsModal(this)">📝 विवरण</button>
+                    <button class="toggle-btn" onclick="toggleVisibility(this)">संतान देखें 🔽</button>
+                    <button class="delete-btn" onclick="deleteBox(this)">X</button>
+                </div>
+            </div>
+            <div class="sub-children-container">
+                <button class="add-btn" onclick="addNewSubBox(this)">+ संतान जोड़ें</button>
+            </div>`;
+    }
+
+    function addNewMainBox(listId) {
+        if (!isAdmin) return;
+        const list = document.getElementById(listId);
+        const newCard = document.createElement('div');
+        newCard.className = 'child-card';
+        newCard.setAttribute('data-private', 'true');
+        newCard.setAttribute('data-phone', '');
+        newCard.setAttribute('data-address', '');
+        newCard.setAttribute('data-photo', '');
+        newCard.innerHTML = createCardHTML();
+        list.appendChild(newCard);
+        refreshButtonsAndEvents();
+        updateEditableState();
+        saveState(true);
+    }
+
+    function addNewSubBox(button) {
+        if (!isAdmin) return;
+        const container = button.parentElement;
+        const newCard = document.createElement('div');
+        newCard.className = 'child-card';
+        newCard.setAttribute('data-private', 'true');
+        newCard.setAttribute('data-phone', '');
+        newCard.setAttribute('data-address', '');
+        newCard.setAttribute('data-photo', '');
+        newCard.style.marginTop = "6px";
+        newCard.innerHTML = createCardHTML();
+        container.insertBefore(newCard, button);
+        refreshButtonsAndEvents();
+        updateEditableState();
+        saveState(true);
+    }
+
+    function deleteBox(button) {
+        if (!isAdmin) return;
+        if (confirm("क्या आप इसे हटाना चाहते हैं?")) {
+            const card = button.closest('.child-card');
+            if (selectedCard === card) selectedCard = null;
+            card.remove();
+            saveState(true);
+        }
+    }
+
+    function toggleVisibility(button) {
+        const card = button.closest('.child-card');
+        const container = card.querySelector('.sub-children-container');
+        if (container.style.display === "none" || container.style.display === "") {
+            container.style.display = "block";
+            button.innerText = "विवरण छुपाएं 🔼";
+        } else {
+            container.style.display = "none";
+            button.innerText = "संतान देखें 🔽";
+        }
+    }
+
+    function searchFamily() {
+        const term = document.getElementById('searchBox').value.trim().toLowerCase();
+        const cards = document.querySelectorAll('.child-card');
+        
+        cards.forEach(card => {
+            card.classList.remove('search-match');
+            const nameEl = card.querySelector('.child-name');
+            if (term !== "" && nameEl && nameEl.innerText.toLowerCase().includes(term)) {
+                card.classList.add('search-match');
+                let parent = card.parentElement;
+                while (parent && parent.id !== 'treeContainer') {
+                    if (parent.classList.contains('sub-children-container')) {
+                        parent.style.display = "block";
+                        const toggleBtn = parent.previousElementSibling?.querySelector('.toggle-btn');
+                        if (toggleBtn) toggleBtn.innerText = "विवरण छुपाएं 🔼";
+                    }
+                    parent = parent.parentElement;
+                }
+            }
+        });
+    }
+
+    document.getElementById('adminPasswordInput').addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') submitLogin();
+    });
+
+    window.onload = loadData;
+</script>
+</body>
+</html>
