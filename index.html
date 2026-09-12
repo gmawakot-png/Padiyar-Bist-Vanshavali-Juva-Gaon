@@ -9,50 +9,88 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
+    <!-- Professional Fonts (Hindi + Latin) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+
     <style>
         * { box-sizing: border-box; }
-        
-        /* सुंदर लाइट पहाड़ी (बर्फ, पर्वत, नदी, आकाश) बैकग्राउंड */
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background: linear-gradient(rgba(244, 248, 249, 0.86), rgba(235, 243, 246, 0.88)), 
-                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
-            background-size: cover;
-            padding: 12px; 
-            margin: 0; 
-            min-height: 100vh;
-        }
-        
-        .main-page-title {
-            text-align: center;
-            color: #1e3799;
-            font-size: 22px;
-            font-weight: 800;
-            margin: 10px auto 18px;
-            max-width: 1400px;
-            padding: 14px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(6px);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-bottom: 4px solid #27ae60;
+
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f4e5b2;
+            --navy: #10213f;
+            --navy-2: #1e3a68;
+            --emerald: #1e8f5e;
         }
 
-        .top-bar { max-width: 1400px; margin: 0 auto 15px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        html { scroll-behavior: smooth; }
+
+        /* भव्य पहाड़ी दृश्य (बर्फ, पर्वत, नदी) — स्थिर बैकग्राउंड जो हमेशा सामने दिखे */
+        body {
+            font-family: 'Hind', 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background:
+                linear-gradient(180deg, rgba(8, 20, 40, 0.42) 0%, rgba(10, 28, 48, 0.55) 45%, rgba(6, 18, 32, 0.7) 100%),
+                url('https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 12px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .main-page-title {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Hind', 'Poppins', sans-serif;
+            color: #ffffff;
+            font-size: 26px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin: 14px auto 22px;
+            max-width: 1400px;
+            padding: 20px 18px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 55%, #0c1a30 100%);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(212,175,55,0.35);
+            border-bottom: 3px solid var(--gold);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+        .main-page-title::before {
+            content: "";
+            position: absolute;
+            top: 0; left: -60%;
+            width: 40%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(212,175,55,0.35), transparent);
+            transform: skewX(-20deg);
+            animation: titleShine 5s ease-in-out infinite;
+        }
+        @keyframes titleShine {
+            0% { left: -60%; }
+            50% { left: 130%; }
+            100% { left: 130%; }
+        }
+
+        .top-bar { max-width: 1400px; margin: 0 auto 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
         .search-container { flex-grow: 1; max-width: 450px; }
         .search-input { 
             width: 100%; 
-            padding: 10px 18px; 
+            padding: 12px 20px; 
             font-size: 15px; 
-            border: 2px solid #b2bec3; 
-            border-radius: 25px; 
+            font-family: 'Hind', sans-serif;
+            border: none;
+            border-radius: 30px; 
             outline: none; 
-            transition: 0.2s; 
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: 0.25s; 
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
         }
-        .search-input:focus { border-color: #27ae60; background: #fff; box-shadow: 0 0 8px rgba(39, 174, 96, 0.3); }
-        .admin-toggle-btn { background: #2c3e50; color: white; border: none; padding: 10px 18px; border-radius: 25px; font-size: 13px; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+        .search-input:focus { background: #fff; box-shadow: 0 0 0 3px rgba(212,175,55,0.45), 0 4px 14px rgba(0,0,0,0.2); }
+        .admin-toggle-btn { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.5); padding: 11px 20px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,0.25); transition: 0.2s; }
+        .admin-toggle-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
 
         .editor-panel { display: none; background: #2c3e50; color: white; padding: 12px 18px; border-radius: 8px; margin: 0 auto 15px; max-width: 1400px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
         .admin-header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
@@ -74,39 +112,41 @@
         .container { 
             max-width: 1400px; 
             margin: 0 auto; 
-            background: rgba(255, 255, 255, 0.94); 
-            backdrop-filter: blur(8px);
-            padding: 22px 18px; 
-            border-radius: 12px; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08); 
+            background: rgba(255, 255, 255, 0.92); 
+            backdrop-filter: blur(10px);
+            padding: 26px 20px; 
+            border-radius: 16px; 
+            box-shadow: 0 12px 36px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.6);
         }
-        .tree-root { display: flex; justify-content: center; margin-bottom: 25px; }
-        .node-root { background: #2c3e50; color: white; padding: 12px 28px; border-radius: 8px; font-size: 20px; font-weight: bold; outline: none; min-width: 160px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .tree-root { display: flex; justify-content: center; margin-bottom: 28px; }
+        .node-root { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: var(--gold-light); padding: 14px 32px; border-radius: 10px; font-size: 21px; font-weight: bold; letter-spacing: 0.3px; outline: none; min-width: 160px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.28); border: 1px solid rgba(212,175,55,0.5); }
         
-        .level-1 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .level-1 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
         @media (max-width: 1024px) { .level-1 { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .level-1 { grid-template-columns: 1fr; } body { padding: 8px; } .container { padding: 12px 6px; } }
+        @media (max-width: 600px) { .level-1 { grid-template-columns: 1fr; } body { padding: 8px; } .container { padding: 14px 8px; } }
 
-        .branch-column { background: rgba(248, 250, 252, 0.95); border: 1.5px solid #d2dae2; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; }
-        .branch-header { background: #34495e; color: white; padding: 10px; text-align: center; border-radius: 6px; font-weight: bold; margin-bottom: 12px; outline: none; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .branch-column { background: rgba(248, 250, 252, 0.97); border: 1px solid #e3d9b8; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
+        .branch-header { background: linear-gradient(135deg, var(--emerald) 0%, #146c46 100%); color: white; padding: 11px; text-align: center; border-radius: 8px; font-weight: 600; margin-bottom: 12px; outline: none; font-size: 16px; letter-spacing: 0.3px; box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
         
         .children-list { display: flex; flex-direction: column; gap: 10px; }
         
         /* कार्ड स्टाइल */
         .child-card { 
             background: #ffffff; 
-            border-left: 5px solid #27ae60; 
+            border-left: 5px solid var(--gold); 
             border-top: 1px solid #e2e8f0; 
             border-right: 1px solid #e2e8f0; 
             border-bottom: 1px solid #e2e8f0; 
-            padding: 8px 10px; 
-            border-radius: 6px; 
+            padding: 9px 11px; 
+            border-radius: 8px; 
             display: flex; 
             flex-direction: column; 
             gap: 6px; 
             position: relative; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+            transition: box-shadow 0.2s, transform 0.2s;
         }
+        .child-card:hover { box-shadow: 0 5px 14px rgba(0,0,0,0.12); transform: translateY(-1px); }
         
         /* लाल बॉक्स केवल एडमिन मोड में ही दिखेगा */
         body.admin-on .child-card.selected-card { 
