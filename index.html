@@ -21,25 +21,15 @@
             background: linear-gradient(180deg, rgba(8, 20, 40, 0.42) 0%, rgba(10, 28, 48, 0.55) 45%, rgba(6, 18, 32, 0.7) 100%), url('https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
             background-attachment: fixed; background-size: cover; padding: 12px; margin: 0; min-height: 100vh;
         }
-        .main-page-title {
-            text-align: center; position: relative; overflow: hidden; font-family: 'Hind', 'Poppins', sans-serif;
-            color: #ffffff; font-size: 26px; letter-spacing: 0.5px; font-weight: 700; margin: 14px auto 22px;
-            max-width: 1400px; padding: 20px 18px;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 55%, #0c1a30 100%);
-            border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(212,175,55,0.35);
-            border-bottom: 3px solid var(--gold); text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-        }
+        .main-page-title { text-align: center; position: relative; overflow: hidden; color: #ffffff; font-size: 26px; letter-spacing: 0.5px; font-weight: 700; margin: 14px auto 22px; max-width: 1400px; padding: 20px 18px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 55%, #0c1a30 100%); border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(212,175,55,0.35); border-bottom: 3px solid var(--gold); text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
         .main-page-title::before { content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(120deg, transparent, rgba(212,175,55,0.35), transparent); transform: skewX(-20deg); animation: titleShine 5s ease-in-out infinite; }
         @keyframes titleShine { 0% { left: -60%; } 50% { left: 130%; } 100% { left: 130%; } }
         .top-bar { max-width: 1400px; margin: 0 auto 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
         .search-container { flex-grow: 1; max-width: 450px; min-width: 240px; }
         .search-input { width: 100%; padding: 12px 20px; font-size: 15px; font-family: 'Hind', sans-serif; border: none; border-radius: 30px; outline: none; transition: 0.25s; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(6px); box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
-        .search-input:focus { background: #fff; box-shadow: 0 0 0 3px rgba(212,175,55,0.45), 0 4px 14px rgba(0,0,0,0.2); }
         .top-bar-buttons { display: flex; gap: 8px; align-items: center; }
-        .contact-btn { background: linear-gradient(135deg, #27ae60 0%, #1e824c 100%); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 11px 18px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,0.25); transition: 0.2s; }
-        .contact-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
-        .admin-toggle-btn { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.5); padding: 11px 20px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,0.25); transition: 0.2s; }
-        .admin-toggle-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+        .contact-btn { background: linear-gradient(135deg, #27ae60 0%, #1e824c 100%); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 11px 18px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+        .admin-toggle-btn { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.5); padding: 11px 20px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
         .editor-panel { display: none; background: #2c3e50; color: white; padding: 12px 18px; border-radius: 8px; margin: 0 auto 15px; max-width: 1400px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
         .admin-header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .admin-title { margin: 0; font-size: 16px; }
@@ -50,6 +40,7 @@
         .btn-change-pass { background: #f39c12; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
         .btn-logout { background: #e74c3c; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
         .btn-access-link { background: #16a085; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .btn-permanent { background: #9b59b6; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
         .btn-history { background: #8e44ad; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
         .btn-help { background: #e67e22; color: white; border: none; padding: 7px 14px; font-size: 13px; font-weight: bold; border-radius: 5px; cursor: pointer; }
         .status-box { background: #16a085; color: white; display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
@@ -57,15 +48,51 @@
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
         .container { max-width: 1400px; margin: 0 auto; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); padding: 26px 20px; border-radius: 16px; box-shadow: 0 12px 36px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.6); }
         .tree-root { display: flex; justify-content: center; margin-bottom: 28px; }
-        .node-root { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: var(--gold-light); padding: 14px 32px; border-radius: 10px; font-size: 21px; font-weight: bold; letter-spacing: 0.3px; outline: none; min-width: 160px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.28); border: 1px solid rgba(212,175,55,0.5); }
+        .node-root { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: var(--gold-light); padding: 14px 32px; border-radius: 10px; font-size: 21px; font-weight: bold; outline: none; min-width: 160px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.28); border: 1px solid rgba(212,175,55,0.5); }
+        
+        /* ============ TREE — Desktop 4 columns, Mobile 4 columns + scroll ============ */
         .level-1 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-        @media (max-width: 1024px) { .level-1 { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .level-1 { grid-template-columns: 1fr; } body { padding: 8px; } .container { padding: 14px 8px; } }
+        
+        @media (max-width: 1024px) {
+            .container { 
+                overflow-x: auto; 
+                padding: 20px 14px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .container::-webkit-scrollbar { height: 12px; }
+            .container::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 6px; }
+            .container::-webkit-scrollbar-thumb { 
+                background: linear-gradient(90deg, #d4af37, #f4e5b2, #d4af37);
+                border-radius: 6px;
+                border: 2px solid #fff;
+            }
+            .container::-webkit-scrollbar-thumb:hover { background: #b8941f; }
+            
+            .level-1 { 
+                grid-template-columns: repeat(4, 300px); 
+                min-width: max-content;
+                padding-bottom: 16px;
+                gap: 18px;
+            }
+            .tree-root { 
+                min-width: max-content; 
+                justify-content: center;
+            }
+            .branch-column { width: 300px; }
+        }
+        
+        @media (max-width: 600px) {
+            body { padding: 8px; }
+            .container { padding: 16px 10px; border-radius: 12px; }
+            .level-1 { grid-template-columns: repeat(4, 270px); gap: 14px; }
+            .branch-column { width: 270px; }
+            .main-page-title { font-size: 18px; padding: 16px 12px; }
+        }
+
         .branch-column { background: rgba(248, 250, 252, 0.97); border: 1px solid #e3d9b8; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
-        .branch-header { background: linear-gradient(135deg, var(--emerald) 0%, #146c46 100%); color: white; padding: 11px; text-align: center; border-radius: 8px; font-weight: 600; margin-bottom: 12px; outline: none; font-size: 16px; letter-spacing: 0.3px; box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
+        .branch-header { background: linear-gradient(135deg, var(--emerald) 0%, #146c46 100%); color: white; padding: 11px; text-align: center; border-radius: 8px; font-weight: 600; margin-bottom: 12px; outline: none; font-size: 16px; box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
         .children-list { display: flex; flex-direction: column; gap: 10px; }
-        .child-card { background: #ffffff; border-left: 5px solid var(--gold); border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 9px 11px; border-radius: 8px; display: flex; flex-direction: column; gap: 6px; position: relative; box-shadow: 0 3px 8px rgba(0,0,0,0.06); transition: box-shadow 0.2s, transform 0.2s; }
-        .child-card:hover { box-shadow: 0 5px 14px rgba(0,0,0,0.12); transform: translateY(-1px); }
+        .child-card { background: #ffffff; border-left: 5px solid var(--gold); border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 9px 11px; border-radius: 8px; display: flex; flex-direction: column; gap: 6px; position: relative; box-shadow: 0 3px 8px rgba(0,0,0,0.06); }
         body.admin-on .child-card.selected-card { border: 2px solid #e74c3c !important; background: #fff8f8; }
         .name-row { display: flex; flex-direction: column; gap: 6px; width: 100%; }
         .name-with-photo { display: flex; align-items: center; gap: 8px; width: 100%; }
@@ -86,7 +113,7 @@
         body:not(.admin-on) .child-card[data-private="true"] .info-btn, body:not(.admin-on) .child-card[data-private="true"] .member-photo-preview { display: none !important; }
         .search-match { background: #ffeaa7 !important; border: 2px solid #fdcb6e !important; }
         body.admin-on [data-tip] { position: relative; }
-        body.admin-on [data-tip]:hover::after { content: attr(data-tip); position: absolute; top: 130%; right: 0; min-width: 260px; max-width: 300px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: 12px; font-weight: normal; font-family: 'Hind', sans-serif; white-space: normal; text-align: left; line-height: 1.65; z-index: 2147483647; box-shadow: 0 8px 24px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(212,175,55,0.6); border-left: 4px solid #d4af37; pointer-events: none; letter-spacing: 0.2px; }
+        body.admin-on [data-tip]:hover::after { content: attr(data-tip); position: absolute; top: 130%; right: 0; min-width: 260px; max-width: 300px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: 12px; font-weight: normal; white-space: normal; text-align: left; line-height: 1.65; z-index: 2147483647; box-shadow: 0 8px 24px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(212,175,55,0.6); border-left: 4px solid #d4af37; pointer-events: none; }
         body.admin-on [data-tip]:hover::before { content: ""; position: absolute; top: 118%; right: 20px; border: 7px solid transparent; border-bottom-color: #1a1a2e; z-index: 2147483647; pointer-events: none; }
         body.admin-on .child-card [data-tip]:hover::after { right: auto; left: 0; top: 140%; }
         body.admin-on .child-card [data-tip]:hover::before { right: auto; left: 20px; }
@@ -95,7 +122,7 @@
         .login-modal h3 { margin-top: 0; color: #2c3e50; text-align: center; font-size: 16px; }
         .password-field-container { position: relative; margin: 15px 0; }
         .password-field-container input { width: 100%; padding: 10px 38px 10px 10px; font-size: 14px; border: 1px solid #bdc3c7; border-radius: 5px; outline: none; }
-        .eye-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none; font-size: 18px; }
+        .eye-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px; }
         .modal-buttons { display: flex; justify-content: space-between; gap: 8px; margin-top: 15px; }
         .modal-buttons button { flex: 1; padding: 8px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 13px; }
         .btn-login-submit { background: #27ae60; color: white; }
@@ -105,13 +132,12 @@
         .detail-field input, .detail-field textarea { width: 100%; padding: 7px 9px; border: 1px solid #bdc3c7; border-radius: 4px; font-size: 13px; outline: none; }
         .modal-photo-preview { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2px solid #27ae60; margin: 0 auto 8px; display: block; cursor: pointer; }
         .contact-edit-row { margin-bottom: 12px; text-align: left; }
-        .contact-checkbox-label { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; color: #2c3e50; margin-bottom: 4px; cursor: pointer; user-select: none; }
-        .contact-checkbox-label input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: #27ae60; }
+        .contact-checkbox-label { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; color: #2c3e50; margin-bottom: 4px; cursor: pointer; }
+        .contact-checkbox-label input[type="checkbox"] { width: 16px; height: 16px; accent-color: #27ae60; }
         .contact-edit-row input[type="text"], .contact-edit-row input[type="email"], .contact-edit-row input[type="url"] { width: 100%; padding: 8px 10px; border: 1px solid #bdc3c7; border-radius: 5px; font-size: 13px; outline: none; }
-        .contact-item-box { display: flex; align-items: center; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 11px 14px; border-radius: 8px; text-decoration: none; color: #2c3e50; transition: 0.2s; }
-        .contact-item-box:hover { background: #edf2f7; transform: translateY(-1px); }
-        .contact-item-icon { font-size: 22px; flex-shrink: 0; }
-        .contact-item-content { flex-grow: 1; overflow: hidden; }
+        .contact-item-box { display: flex; align-items: center; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 11px 14px; border-radius: 8px; text-decoration: none; color: #2c3e50; }
+        .contact-item-icon { font-size: 22px; }
+        .contact-item-content { flex-grow: 1; }
         .contact-item-label { font-size: 11px; color: #7f8c8d; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
         .contact-item-val { font-size: 14px; font-weight: 600; color: #1e3a68; word-break: break-all; }
         #lightboxModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 200000; justify-content: center; align-items: center; }
@@ -128,18 +154,24 @@
         .help-section p { margin: 4px 0; font-size: 12.5px; color: #2c3e50; line-height: 1.7; }
         .help-section .hint { color: #16a085; font-weight: 600; font-size: 12px; }
         .help-section .warn { color: #c0392b; font-weight: 600; font-size: 12px; }
+        .perm-item { background: #fff; padding: 11px 13px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .perm-item.pending { background: #fff9e6; border-left: 4px solid #f39c12; }
+        .perm-item.active { background: #e8f8f0; border-left: 4px solid #27ae60; }
+        .perm-info { flex: 1; min-width: 160px; }
+        .perm-name { font-size: 13px; font-weight: 700; color: #2c3e50; }
+        .perm-meta { font-size: 11px; color: #7f8c8d; margin-top: 3px; }
+        .perm-btn { border: none; padding: 6px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold; color: white; }
     </style>
 </head>
 <body>
 
-<!-- UNDER CONSTRUCTION OVERLAY -->
 <div id="constructionOverlay" style="display:flex; position:fixed; inset:0; background: linear-gradient(135deg, #10213f 0%, #1e3a68 55%, #0c1a30 100%); z-index:50000; justify-content:center; align-items:center; padding:20px; text-align:center;">
     <div style="max-width: 520px; width: 100%; background: rgba(255,255,255,0.97); padding: 40px 30px; border-radius: 18px; box-shadow: 0 25px 70px rgba(0,0,0,0.5); border-top: 5px solid #d4af37;">
-        <div style="font-size: 65px; margin-bottom: 12px; line-height: 1;">🚧</div>
-        <h1 style="font-family: 'Tiro Devanagari Hindi', 'Hind', serif; color: #10213f; font-size: 28px; margin: 0 0 8px; font-weight: 700;">क्षमा प्रार्थी हूँ</h1>
-        <h2 style="color: #1e3a68; font-size: 19px; margin: 0 0 18px; font-weight: 600; letter-spacing: 0.5px;">Website Under Construction</h2>
-        <div style="width: 80px; height: 3px; background: #d4af37; margin: 0 auto 20px; border-radius: 2px;"></div>
-        <p style="color: #555; font-size: 15px; line-height: 1.7; margin: 0 0 25px;">यह वेबसाइट अभी निर्माणाधीन है।<br>कृपया कुछ समय बाद पुनः प्रयास करें।<br><span style="font-size: 13px; color: #888;">असुविधा के लिए खेद है।</span></p>
+        <div style="font-size: 65px; margin-bottom: 12px;">🚧</div>
+        <h1 style="font-family: 'Tiro Devanagari Hindi', 'Hind', serif; color: #10213f; font-size: 28px; margin: 0 0 8px;">क्षमा प्रार्थी हूँ</h1>
+        <h2 style="color: #1e3a68; font-size: 19px; margin: 0 0 18px;">Website Under Construction</h2>
+        <div style="width: 80px; height: 3px; background: #d4af37; margin: 0 auto 20px;"></div>
+        <p style="color: #555; font-size: 15px; line-height: 1.7; margin: 0 0 25px;">यह वेबसाइट अभी निर्माणाधीन है।<br>कृपया कुछ समय बाद पुनः प्रयास करें।</p>
         <div style="padding-top: 20px; border-top: 1px dashed #ccc;">
             <button onclick="openLoginModal()" style="background: #10213f; color: #f4e5b2; border: 1px solid #d4af37; padding: 10px 26px; border-radius: 30px; font-size: 13px; cursor: pointer; font-weight: bold;">🔒 एडमिन लॉगिन</button>
         </div>
@@ -158,27 +190,26 @@
     </div>
 </div>
 
-<!-- एडमिन पैनल -->
 <div class="editor-panel" id="adminPanel">
     <div class="admin-header-flex">
         <div>
             <h3 class="admin-title">🛠️ वंशावली एडिटर पैनल</h3>
-            <div class="shortcut-info">⌨️ PC शॉर्टकट: <b>Ctrl+Z</b> (Undo) | <b>Ctrl+Y</b> (Redo) | कार्ड चुनकर <b>Delete</b> दबाएं | 💡 किसी भी बटन पर माउस ले जाएं — पूरी जानकारी दिखेगी</div>
+            <div class="shortcut-info">💡 किसी भी बटन पर माउस ले जाएं — पूरी जानकारी दिखेगी | ⌨️ Ctrl+Z (Undo) | Ctrl+Y (Redo)</div>
         </div>
         <div class="admin-actions">
             <div class="status-box"><span class="dot"></span><span id="saveStatus">कनेक्ट हो रहा है...</span></div>
-            <button class="btn-help" data-tip="📖 पूरी मदद गाइड खोलता है जिसमें हर एडमिन फंक्शन का विस्तृत विवरण है।" onclick="openHelpModal()">❓ मदद</button>
-            <button class="btn-turn-all-off" data-tip="🔒 एक क्लिक में सभी सदस्यों का विवरण प्राइवेट (OFF) कर देता है।" onclick="forceTurnAllOff()">🔒 सभी को OFF करें</button>
-            <button class="btn-contact-edit" data-tip="📞 पब्लिक 'संपर्क करें' बटन दबाने पर कौन-सी जानकारी देखेगी — यहाँ से तय करें।" onclick="openContactEditModal()">📞 संपर्क विवरण सेट करें</button>
-            <button class="btn-access-link" data-tip="🔗 Under Construction पेज हटाकर पूरी वंशावली किसी को दिखाने के लिए एक्सेस लिंक बनाता है। एक समय में 1 लिंक। पहली बार जिसने खोला, उसी के डिवाइस पर बंध जाएगा।" onclick="openAccessLinkModal()">🔗 एक्सेस लिंक बनाएं</button>
-            <button class="btn-history" data-tip="📊 किसने, कब, कौन-से डिवाइस से वंशावली खोली — पूरा रिकॉर्ड।" onclick="openHistoryModal()">📊 एक्सेस इतिहास</button>
-            <button class="btn-change-pass" data-tip="🔑 एडमिन पैनल का पासवर्ड बदलें। कम से कम 4 अक्षर।" onclick="openChangePassModal()">🔑 पासवर्ड बदलें</button>
-            <button class="btn-logout" data-tip="🔒 एडमिन मोड बंद करें। फिर से काम करने के लिए पासवर्ड डालें।" onclick="adminLogout()">लॉगआउट ✖</button>
+            <button class="btn-help" data-tip="📖 पूरी मदद गाइड।" onclick="openHelpModal()">❓ मदद</button>
+            <button class="btn-turn-all-off" data-tip="🔒 एक क्लिक में सभी सदस्यों का विवरण प्राइवेट (OFF)।" onclick="forceTurnAllOff()">🔒 सभी OFF</button>
+            <button class="btn-contact-edit" data-tip="📞 पब्लिक 'संपर्क करें' दबाने पर क्या दिखे।" onclick="openContactEditModal()">📞 संपर्क</button>
+            <button class="btn-access-link" data-tip="🔗 TEMPORARY link — एक बार दिखाने के लिए। एक समय में 1 लिंक।" onclick="openAccessLinkModal()">🔗 Temporary Link</button>
+            <button class="btn-permanent" data-tip="👥 PERMANENT users — हमेशा के लिए access। जितने चाहें जोड़ें।" onclick="openPermanentModal()">👥 Permanent Users</button>
+            <button class="btn-history" data-tip="📊 किसने, कब, कौन-से डिवाइस से खोला।" onclick="openHistoryModal()">📊 इतिहास</button>
+            <button class="btn-change-pass" data-tip="🔑 एडमिन पासवर्ड बदलें।" onclick="openChangePassModal()">🔑 पासवर्ड</button>
+            <button class="btn-logout" data-tip="🔒 एडमिन मोड बंद करें।" onclick="adminLogout()">लॉगआउट ✖</button>
         </div>
     </div>
 </div>
 
-<!-- फैमिली ट्री -->
 <div class="container" id="treeContainer">
     <div class="tree-root"><div class="node-root" contenteditable="false" id="root">केदार सिंह बिष्ट</div></div>
     <div class="level-1">
@@ -205,102 +236,89 @@
     </div>
 </div>
 
-<!-- MODALS -->
 <div class="modal-overlay" id="contactViewModal">
     <div class="login-modal" style="max-width: 380px;">
-        <h3>📞 संपर्क सूत्र (Contact Us)</h3>
+        <h3>📞 संपर्क सूत्र</h3>
         <div id="contactDisplayContainer" style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;"></div>
-        <div class="modal-buttons" style="margin-top: 20px;">
-            <button class="btn-login-cancel" style="width: 100%;" onclick="closePublicContactModal()">बंद करें</button>
-        </div>
+        <div class="modal-buttons" style="margin-top: 20px;"><button class="btn-login-cancel" style="width: 100%;" onclick="closePublicContactModal()">बंद करें</button></div>
     </div>
 </div>
 
 <div class="modal-overlay" id="contactEditModal">
     <div class="login-modal" style="max-width: 420px;">
-        <h3>📞 संपर्क विवरण सेटिंग (एडमिन)</h3>
-        <p style="font-size: 11px; color: #7f8c8d; margin-top:-6px; margin-bottom: 12px; text-align: center;">जिस पर टिक (✓) होगा, पब्लिक को सिर्फ वही दिखेगा।</p>
-        <div class="contact-edit-row">
-            <label class="contact-checkbox-label"><input type="checkbox" id="chkContactName"><span>पब्लिक को नाम दिखाएं</span></label>
-            <input type="text" id="inputContactName" placeholder="उदा. केदार सिंह बिष्ट परिवार">
-        </div>
-        <div class="contact-edit-row">
-            <label class="contact-checkbox-label"><input type="checkbox" id="chkContactPhone"><span>पब्लिक को मोबाइल नंबर दिखाएं</span></label>
-            <input type="text" id="inputContactPhone" placeholder="उदा. +91 9876543210">
-        </div>
-        <div class="contact-edit-row">
-            <label class="contact-checkbox-label"><input type="checkbox" id="chkContactEmail"><span>पब्लिक को ईमेल दिखाएं</span></label>
-            <input type="email" id="inputContactEmail" placeholder="उदा. example@gmail.com">
-        </div>
-        <div class="contact-edit-row">
-            <label class="contact-checkbox-label"><input type="checkbox" id="chkContactWeb"><span>पब्लिक को वेबसाइट दिखाएं</span></label>
-            <input type="url" id="inputContactWeb" placeholder="उदा. https://mywebsite.com">
-        </div>
-        <div class="modal-buttons">
-            <button class="btn-login-submit" onclick="saveContactData()">💾 सुरक्षित करें</button>
-            <button class="btn-login-cancel" onclick="closeContactEditModal()">रद्द करें</button>
-        </div>
+        <h3>📞 संपर्क विवरण सेटिंग</h3>
+        <p style="font-size: 11px; color: #7f8c8d; text-align: center; margin-bottom: 12px;">जिस पर टिक (✓) होगा, पब्लिक को वही दिखेगा।</p>
+        <div class="contact-edit-row"><label class="contact-checkbox-label"><input type="checkbox" id="chkContactName"><span>नाम दिखाएं</span></label><input type="text" id="inputContactName" placeholder="नाम"></div>
+        <div class="contact-edit-row"><label class="contact-checkbox-label"><input type="checkbox" id="chkContactPhone"><span>मोबाइल दिखाएं</span></label><input type="text" id="inputContactPhone" placeholder="+91 9876543210"></div>
+        <div class="contact-edit-row"><label class="contact-checkbox-label"><input type="checkbox" id="chkContactEmail"><span>ईमेल दिखाएं</span></label><input type="email" id="inputContactEmail" placeholder="example@gmail.com"></div>
+        <div class="contact-edit-row"><label class="contact-checkbox-label"><input type="checkbox" id="chkContactWeb"><span>वेबसाइट दिखाएं</span></label><input type="url" id="inputContactWeb" placeholder="https://..."></div>
+        <div class="modal-buttons"><button class="btn-login-submit" onclick="saveContactData()">💾 सुरक्षित</button><button class="btn-login-cancel" onclick="closeContactEditModal()">रद्द</button></div>
     </div>
 </div>
 
 <div class="modal-overlay" id="accessLinkModal">
     <div class="login-modal" style="max-width: 520px;">
-        <h3>🔗 एक्सेस लिंक मैनेज करें</h3>
+        <h3>🔗 Temporary Link (एक बार के लिए)</h3>
         <p style="font-size: 12px; color: #7f8c8d; text-align: center; margin: 6px 0 15px; line-height: 1.6;">
-            ⚠️ एक समय में केवल एक लिंक सक्रिय रहेगा।<br>नया लिंक बनाने पर पुराना स्वतः बंद हो जाएगा।<br>लिंक केवल उसी डिवाइस पर काम करेगा जिस पर पहली बार खोला गया हो।
+            ⚠️ एक समय में केवल एक लिंक। नया बनाने पर पुराना बंद।<br>
+            Permanent users के लिए 👥 वाला बटन इस्तेमाल करें।
         </p>
         <div id="currentLinkBox" style="display:none; background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0;">
-            <label style="font-size:11px; font-weight:bold; color:#2c3e50; text-transform:uppercase;">✅ वर्तमान सक्रिय लिंक</label>
+            <label style="font-size:11px; font-weight:bold; color:#2c3e50;">✅ वर्तमान Temporary Link</label>
             <input type="text" id="generatedLinkInput" readonly style="width:100%; padding:9px; font-size:12px; margin-top:6px; border:1px solid #cbd5e0; border-radius:5px; background:#fff; box-sizing:border-box;">
             <div style="display:flex; gap:8px; margin-top:9px;">
-                <button onclick="copyAccessLink()" style="flex:1; background:#3498db; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">📋 कॉपी करें</button>
+                <button onclick="copyAccessLink()" style="flex:1; background:#3498db; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">📋 कॉपी</button>
                 <button onclick="shareWhatsApp()" style="flex:1; background:#25D366; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">📱 WhatsApp</button>
-                <button onclick="shareNative()" style="flex:1; background:#9b59b6; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">📤 अन्य ऐप</button>
+                <button onclick="shareNative()" style="flex:1; background:#9b59b6; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">📤 अन्य</button>
             </div>
         </div>
-        <div id="linkStatusBox" style="margin-top:12px; padding:10px; background:#fff9e6; border-left:4px solid #f39c12; border-radius:5px; font-size:12px; color:#7f6000;">
-            ⏳ अभी कोई सक्रिय लिंक नहीं है।
+        <div id="linkStatusBox" style="margin-top:12px; padding:10px; background:#fff9e6; border-left:4px solid #f39c12; border-radius:5px; font-size:12px; color:#7f6000;">⏳ अभी कोई लिंक नहीं।</div>
+        <div style="margin-top:15px;"><button onclick="generateAccessLink()" style="width:100%; background:#27ae60; color:white; border:none; padding:12px; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px;">🔄 नया Temporary Link बनाएं</button></div>
+        <div class="modal-buttons" style="margin-top:14px;"><button class="btn-login-cancel" style="width:100%;" onclick="closeAccessLinkModal()">बंद करें</button></div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="permanentModal">
+    <div class="login-modal" style="max-width: 680px; max-height: 88vh; overflow-y: auto;">
+        <h3>👥 Permanent Users (हमेशा के लिए Access)</h3>
+        <p style="font-size: 12px; color: #7f8c8d; text-align: center; margin: 6px 0 14px; line-height: 1.6;">
+            जिन्हें <b>हमेशा</b> वंशावली देखनी है, उनके लिए permanent link बनाएं।<br>
+            ✅ जितने चाहें बनाएं | ✅ किसी को भी कभी भी हटा सकते हैं
+        </p>
+        <button onclick="createPermanentLink()" style="width:100%; background:#27ae60; color:white; border:none; padding:12px; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px; margin-bottom:12px;">➕ नया Permanent Link बनाएं</button>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+            <button onclick="loadPermanentUsers()" style="flex:1; background:#2980b9; color:white; border:none; padding:8px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">🔄 रिफ्रेश</button>
         </div>
-        <div style="margin-top:15px;">
-            <button onclick="generateAccessLink()" style="width:100%; background:#27ae60; color:white; border:none; padding:12px; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px;">🔄 नया लिंक बनाएं (पुराना बंद हो जाएगा)</button>
+        <div id="permanentListContent" style="min-height: 100px;">
+            <div style="text-align:center; color:#7f8c8d; padding:20px; font-size:13px;">लोड हो रहा है...</div>
         </div>
-        <div class="modal-buttons" style="margin-top:14px;">
-            <button class="btn-login-cancel" style="width:100%;" onclick="closeAccessLinkModal()">बंद करें</button>
-        </div>
+        <div class="modal-buttons" style="margin-top:15px;"><button class="btn-login-cancel" style="width:100%;" onclick="closePermanentModal()">बंद करें</button></div>
     </div>
 </div>
 
 <div class="modal-overlay" id="historyModal">
-    <div class="login-modal" style="max-width: 660px; max-height: 85vh; overflow-y: auto;">
+    <div class="login-modal" style="max-width: 700px; max-height: 85vh; overflow-y: auto;">
         <h3>📊 एक्सेस इतिहास</h3>
-        <p style="font-size: 12px; color: #7f8c8d; text-align: center; margin: 4px 0 12px;">नीचे सभी लिंक और उनके इस्तेमाल का रिकॉर्ड है।</p>
+        <p style="font-size: 12px; color: #7f8c8d; text-align: center; margin-bottom: 12px;">सभी temporary + permanent access का पूरा रिकॉर्ड।</p>
         <div style="display:flex; gap:8px; margin-bottom:10px;">
-            <button onclick="loadHistory()" style="flex:1; background:#2980b9; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">🔄 रिफ्रेश करें</button>
-            <button onclick="clearHistory()" style="flex:1; background:#e74c3c; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">🗑️ इतिहास साफ करें</button>
+            <button onclick="loadHistory()" style="flex:1; background:#2980b9; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">🔄 रिफ्रेश</button>
+            <button onclick="clearHistory()" style="flex:1; background:#e74c3c; color:white; border:none; padding:9px; border-radius:5px; cursor:pointer; font-size:12px; font-weight:bold;">🗑️ साफ करें</button>
         </div>
-        <div id="historyContent" style="min-height: 100px;">
-            <div style="text-align:center; color:#7f8c8d; padding:20px; font-size:13px;">लोड हो रहा है...</div>
-        </div>
-        <div class="modal-buttons" style="margin-top:15px;">
-            <button class="btn-login-cancel" style="width:100%;" onclick="closeHistoryModal()">बंद करें</button>
-        </div>
+        <div id="historyContent" style="min-height: 100px;"><div style="text-align:center; color:#7f8c8d; padding:20px; font-size:13px;">लोड हो रहा है...</div></div>
+        <div class="modal-buttons" style="margin-top:15px;"><button class="btn-login-cancel" style="width:100%;" onclick="closeHistoryModal()">बंद करें</button></div>
     </div>
 </div>
 
 <div class="modal-overlay" id="helpModal">
     <div class="login-modal" style="max-width: 720px; max-height: 88vh; overflow-y: auto;">
-        <h3 style="font-size:18px;">📖 एडमिन पैनल — पूरी मदद गाइड</h3>
-        <p style="font-size:12px; color:#7f8c8d; text-align:center; margin:4px 0 16px;">💡 किसी भी बटन पर माउस ले जाने पर भी टूलटिप में जानकारी मिलेगी।</p>
-        <div class="help-section"><h4>🔒 सभी को OFF करें</h4><p><b>क्या:</b> एक क्लिक में सभी सदस्यों का डेटा प्राइवेट करता है।</p><p><b>कब:</b> नए सदस्य जोड़ने के बाद सब छुपे रहें, फिर एक-एक करके ON करें।</p></div>
-        <div class="help-section"><h4>📞 संपर्क विवरण सेट करें</h4><p><b>क्या:</b> पब्लिक "संपर्क करें" दबाने पर क्या देखे, यह तय करता है।</p><p><b>कैसे:</b> नाम, मोबाइल, ईमेल, वेबसाइट में जिस पर टिक (✓) लगाएंगे वही दिखेगा।</p></div>
-        <div class="help-section"><h4>🔗 एक्सेस लिंक बनाएं</h4><p><b>क्या:</b> "Under Construction" हटाकर वंशावली दिखाने की अनुमति देता है — सिर्फ उस व्यक्ति को जिसे आप लिंक देते हैं।</p><p><b>कैसे:</b> 🔄 नया लिंक → कॉपी/WhatsApp → पहली बार जिसने खोला, उसी डिवाइस पर बंध जाएगा।</p><p class="warn">⚠️ एक समय में 1 लिंक। नया बनाते ही पुराना बंद।</p></div>
-        <div class="help-section"><h4>📊 एक्सेस इतिहास</h4><p><b>क्या:</b> किसने, कब, कौन-से डिवाइस से खोला — पूरा रिकॉर्ड। अस्वीकृत प्रयास भी दर्ज।</p></div>
-        <div class="help-section"><h4>🔑 पासवर्ड बदलें</h4><p>कम से कम 4 अक्षर। Firebase में सुरक्षित।</p><p class="warn">⚠️ भूलने पर recover नहीं होगा।</p></div>
-        <div class="help-section"><h4>📇 कार्ड स्तर के बटन</h4><p><b>⚪ OFF / 🟢 ON:</b> विवरण पब्लिक को दिखे या नहीं।</p><p><b>📝 विवरण:</b> फोन, पता, फोटो जोड़ें।</p><p><b>संतान देखें:</b> उप-सदस्य दिखाएं/छुपाएं।</p><p><b>X:</b> सदस्य हटाएं (वापस नहीं आएगा)।</p></div>
-        <div class="help-section"><h4>⌨️ शॉर्टकट (PC)</h4><p><b>Ctrl+Z</b> — Undo | <b>Ctrl+Y</b> — Redo | <b>Delete</b> — चुना कार्ड हटाएं</p></div>
-        <div class="modal-buttons" style="margin-top:18px;">
-            <button class="btn-login-cancel" style="width:100%; background:#10213f; color:#f4e5b2;" onclick="closeHelpModal()">✓ समझ गया</button>
-        </div>
+        <h3 style="font-size:18px;">📖 एडमिन पैनल — पूरी मदद</h3>
+        <div class="help-section"><h4>🔗 Temporary Link (एक बार के लिए)</h4><p>एक समय में सिर्फ 1 लिंक। नया बनाते ही पुराना बंद। पहली बार जिसने खोला, उसी डिवाइस पर बंध जाएगा। वह किसी और को दे → काम नहीं करेगा।</p><p class="hint">💡 दूर के रिश्तेदार, दोस्त को एक बार दिखाने के लिए।</p></div>
+        <div class="help-section"><h4>👥 Permanent Users (हमेशा के लिए)</h4><p><b>क्या:</b> जिन्हें हमेशा वंशावली देखनी है, उनके लिए permanent link बनाएं।</p><p><b>कैसे:</b> "➕ नया Permanent Link बनाएं" → नाम लिखें → लिंक भेजें → पहली बार खोलने पर उसका डिवाइस हमेशा के लिए जुड़ जाएगा।</p><p><b>सुरक्षा:</b> वह link किसी और को दे → किसी और के फोन पर नहीं खुलेगा।</p><p class="hint">💡 भाई-बहन, माता-पिता, करीबी परिवार के लिए।</p></div>
+        <div class="help-section"><h4>📊 एक्सेस इतिहास</h4><p>किसने, कब, कौन-से डिवाइस से खोला — सब दर्ज। Temporary + Permanent दोनों।</p></div>
+        <div class="help-section"><h4>📞 संपर्क विवरण</h4><p>पब्लिक "संपर्क करें" दबाने पर क्या देखे — नाम, मोबाइल, ईमेल, वेबसाइट में से जिस पर टिक लगाएं।</p></div>
+        <div class="help-section"><h4>🔑 पासवर्ड बदलें</h4><p>कम से कम 4 अक्षर। Firebase में सुरक्षित।</p></div>
+        <div class="help-section"><h4>📇 कार्ड के बटन</h4><p><b>⚪/🟢:</b> प्राइवेसी ON/OFF</p><p><b>📝 विवरण:</b> फोन, पता, फोटो</p><p><b>संतान देखें:</b> उप-सदस्य दिखाएं/छुपाएं</p><p><b>X:</b> हटाएं</p></div>
+        <div class="modal-buttons" style="margin-top:18px;"><button class="btn-login-cancel" style="width:100%; background:#10213f; color:#f4e5b2;" onclick="closeHelpModal()">✓ समझ गया</button></div>
     </div>
 </div>
 
@@ -310,55 +328,29 @@
         <div style="text-align: center;">
             <img id="modalPhotoPreview" src="" class="modal-photo-preview" style="display:none;" onclick="showBigPhoto(this.src)">
             <small id="photoClickHint" style="display:none; color:#7f8c8d; font-size:10px;">🔍 बड़ा देखने के लिए क्लिक करें</small>
-            <div id="photoUploadContainer" style="margin-top: 6px;">
-                <input type="file" accept="image/*" id="modalPhotoInput" onchange="handleModalPhoto(this)" style="font-size: 11px;">
-            </div>
+            <div id="photoUploadContainer" style="margin-top: 6px;"><input type="file" accept="image/*" id="modalPhotoInput" onchange="handleModalPhoto(this)" style="font-size: 11px;"></div>
         </div>
-        <div class="detail-field" style="margin-top: 8px;">
-            <label>📞 फोन नंबर:</label>
-            <input type="text" id="modalPhoneInput" placeholder="उपलब्ध नहीं">
-        </div>
-        <div class="detail-field">
-            <label>🏠 पता:</label>
-            <textarea id="modalAddressInput" rows="2" placeholder="उपलब्ध नहीं"></textarea>
-        </div>
-        <div class="modal-buttons">
-            <button class="btn-login-submit" id="btnSaveDetails" onclick="saveMemberDetails()">💾 सुरक्षित करें</button>
-            <button class="btn-login-cancel" onclick="closeDetailsModal()">बंद करें</button>
-        </div>
+        <div class="detail-field" style="margin-top: 8px;"><label>📞 फोन:</label><input type="text" id="modalPhoneInput"></div>
+        <div class="detail-field"><label>🏠 पता:</label><textarea id="modalAddressInput" rows="2"></textarea></div>
+        <div class="modal-buttons"><button class="btn-login-submit" id="btnSaveDetails" onclick="saveMemberDetails()">💾 सुरक्षित</button><button class="btn-login-cancel" onclick="closeDetailsModal()">बंद करें</button></div>
     </div>
 </div>
 
-<div id="lightboxModal" onclick="closeBigPhoto()">
-    <span id="closeLightbox">&times;</span>
-    <img id="lightboxImage" src="" alt="Full View">
-</div>
+<div id="lightboxModal" onclick="closeBigPhoto()"><span id="closeLightbox">&times;</span><img id="lightboxImage" src=""></div>
 
 <div class="modal-overlay" id="loginModal">
     <div class="login-modal">
         <h3>🔑 एडमिन पासवर्ड</h3>
-        <div class="password-field-container">
-            <input type="password" id="adminPasswordInput" placeholder="पासवर्ड लिखें">
-            <span class="eye-icon" onclick="togglePasswordEye('adminPasswordInput', this)">👁️</span>
-        </div>
-        <div class="modal-buttons">
-            <button class="btn-login-submit" onclick="submitLogin()">लॉगिन</button>
-            <button class="btn-login-cancel" onclick="closeLoginModal()">रद्द करें</button>
-        </div>
+        <div class="password-field-container"><input type="password" id="adminPasswordInput" placeholder="पासवर्ड"><span class="eye-icon" onclick="togglePasswordEye('adminPasswordInput', this)">👁️</span></div>
+        <div class="modal-buttons"><button class="btn-login-submit" onclick="submitLogin()">लॉगिन</button><button class="btn-login-cancel" onclick="closeLoginModal()">रद्द</button></div>
     </div>
 </div>
 
 <div class="modal-overlay" id="changePassModal">
     <div class="login-modal">
-        <h3>🔑 नया पासवर्ड बनाएं</h3>
-        <div class="password-field-container">
-            <input type="password" id="newPasswordInput" placeholder="नया पासवर्ड दर्ज करें">
-            <span class="eye-icon" onclick="togglePasswordEye('newPasswordInput', this)">👁️</span>
-        </div>
-        <div class="modal-buttons">
-            <button class="btn-login-submit" onclick="saveNewPassword()">सुरक्षित करें</button>
-            <button class="btn-login-cancel" onclick="closeChangePassModal()">रद्द करें</button>
-        </div>
+        <h3>🔑 नया पासवर्ड</h3>
+        <div class="password-field-container"><input type="password" id="newPasswordInput" placeholder="नया पासवर्ड"><span class="eye-icon" onclick="togglePasswordEye('newPasswordInput', this)">👁️</span></div>
+        <div class="modal-buttons"><button class="btn-login-submit" onclick="saveNewPassword()">सुरक्षित</button><button class="btn-login-cancel" onclick="closeChangePassModal()">रद्द</button></div>
     </div>
 </div>
 
@@ -381,7 +373,7 @@
         appId: "1:810845496468:web:1f979311fbf3f390b28081"
     };
 
-    let isFirebaseReady = false, dbRef = null, passRef = null, contactRef = null, accessRef = null, historyRef = null;
+    let isFirebaseReady = false, dbRef = null, passRef = null, contactRef = null, accessRef = null, historyRef = null, permanentRef = null;
 
     try {
         firebase.initializeApp(firebaseConfig);
@@ -390,6 +382,7 @@
         contactRef = firebase.database().ref('vanshavali_contact_info');
         accessRef = firebase.database().ref('vanshavali_access_control');
         historyRef = firebase.database().ref('vanshavali_access_history');
+        permanentRef = firebase.database().ref('vanshavali_permanent_users');
         isFirebaseReady = true;
     } catch(e) { console.warn("Firebase offline"); }
 
@@ -424,7 +417,6 @@
     }
 
     function refreshButtonsAndEvents() {
-        document.querySelectorAll('.member-details-drawer').forEach(el => el.remove());
         document.querySelectorAll('.child-card').forEach(card => {
             if (!card.hasAttribute('data-private')) card.setAttribute('data-private', 'true');
             if (!card.hasAttribute('data-phone')) card.setAttribute('data-phone', '');
@@ -442,13 +434,13 @@
             if (switchBtn) {
                 switchBtn.className = 'switch-toggle-btn ' + (isPriv ? 'switch-off' : 'switch-on');
                 switchBtn.innerText = isPriv ? '⚪ OFF' : '🟢 ON';
-                switchBtn.setAttribute('data-tip', 'प्राइवेसी टॉगल: OFF रहने पर सिर्फ एडमिन देखे, ON करने पर पब्लिक भी।');
+                switchBtn.setAttribute('data-tip', 'प्राइवेसी: OFF = सिर्फ एडमिन देखे, ON = पब्लिक भी।');
                 switchBtn.onclick = function(e) { e.stopPropagation(); toggleSwitch(this); };
             }
             let infoBtn = card.querySelector('.info-btn');
             if (infoBtn) { infoBtn.setAttribute('data-tip', 'फोन, पता, फोटो जोड़ें/बदलें।'); infoBtn.onclick = function(e) { e.stopPropagation(); openDetailsModal(this); }; }
             let toggleBtn = card.querySelector('.toggle-btn');
-            if (toggleBtn) { toggleBtn.setAttribute('data-tip', 'संतान दिखाएं या छुपाएं।'); toggleBtn.onclick = function(e) { e.stopPropagation(); toggleVisibility(this); }; }
+            if (toggleBtn) { toggleBtn.setAttribute('data-tip', 'संतान दिखाएं/छुपाएं।'); toggleBtn.onclick = function(e) { e.stopPropagation(); toggleVisibility(this); }; }
             let deleteBtn = card.querySelector('.delete-btn');
             if (deleteBtn) { deleteBtn.setAttribute('data-tip', '⚠️ हटा दें। वापस नहीं आएगा।'); deleteBtn.onclick = function(e) { e.stopPropagation(); deleteBox(this); }; }
             let addSubBtn = card.querySelector('.add-btn');
@@ -458,14 +450,14 @@
 
     function forceTurnAllOff() {
         if (!isAdmin) return;
-        if (!confirm("क्या आप वाकई सभी सदस्यों का विवरण OFF करना चाहते हैं?")) return;
+        if (!confirm("सभी सदस्यों का विवरण OFF करें?")) return;
         document.querySelectorAll('.child-card').forEach(card => {
             card.setAttribute('data-private', 'true');
             const switchBtn = card.querySelector('.switch-toggle-btn');
             if (switchBtn) { switchBtn.className = 'switch-toggle-btn switch-off'; switchBtn.innerText = '⚪ OFF'; }
         });
         updatePhotoVisibility(); saveState(true);
-        alert("✅ सभी सदस्यों का विवरण OFF कर दिया गया है!");
+        alert("✅ सभी OFF!");
     }
 
     function toggleSwitch(btn) {
@@ -556,7 +548,7 @@
         currentEditingCard.setAttribute('data-phone', document.getElementById('modalPhoneInput').value.trim());
         currentEditingCard.setAttribute('data-address', document.getElementById('modalAddressInput').value.trim());
         updatePhotoVisibility(); saveState(true); closeDetailsModal();
-        alert('✅ विवरण सुरक्षित हो गया!');
+        alert('✅ सुरक्षित!');
     }
 
     function togglePasswordEye(inputId, iconEl) {
@@ -591,7 +583,7 @@
             closeLoginModal();
             refreshButtonsAndEvents(); updateEditableState(); updatePhotoVisibility();
             undoStack = [document.getElementById('treeContainer').innerHTML];
-            alert("✅ एडमिन मोड चालू!\n\n💡 किसी भी बटन पर माउस ले जाएं — टूलटिप दिखेगी।\n📖 पूरी मदद के लिए '❓ मदद' दबाएं।");
+            alert("✅ एडमिन मोड चालू!\n\n💡 बटन पर माउस ले जाएं → टूलटिप\n📖 पूरी मदद: '❓ मदद' बटन");
         } else alert("❌ गलत पासवर्ड!");
     }
 
@@ -603,7 +595,7 @@
         if (selectedCard) { selectedCard.classList.remove('selected-card'); selectedCard = null; }
         document.querySelectorAll('.selected-card').forEach(c => c.classList.remove('selected-card'));
         refreshButtonsAndEvents(); updateEditableState(); updatePhotoVisibility();
-        alert("🔒 एडमिन मोड बंद हो गया है।");
+        alert("🔒 एडमिन मोड बंद।");
         initAccess();
     }
 
@@ -652,7 +644,7 @@
             if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
             container.innerHTML += `<a href="${escapeContactHtml(url)}" target="_blank" rel="noopener noreferrer" class="contact-item-box"><div class="contact-item-icon">🌐</div><div class="contact-item-content"><div class="contact-item-label">वेबसाइट</div><div class="contact-item-val">${escapeContactHtml(contactInfo.web)}</div></div></a>`;
         }
-        if (!hasAnyVisible) container.innerHTML = `<div style="text-align:center; color:#7f8c8d; padding:20px 10px; font-size:14px; background:#f8fafc; border-radius:8px; border:1px dashed #cbd5e0;">ℹ️ संपर्क सूत्र जानकारी उपलब्ध नहीं है।</div>`;
+        if (!hasAnyVisible) container.innerHTML = `<div style="text-align:center; color:#7f8c8d; padding:20px; font-size:14px; background:#f8fafc; border-radius:8px; border:1px dashed #cbd5e0;">ℹ️ जानकारी उपलब्ध नहीं है।</div>`;
         document.getElementById('contactViewModal').style.display = 'flex';
     }
     function closePublicContactModal() { document.getElementById('contactViewModal').style.display = 'none'; }
@@ -697,7 +689,7 @@
 
     function getDeviceInfo() {
         const ua = navigator.userAgent;
-        let device = "अज्ञात डिवाइस";
+        let device = "अज्ञात";
         if (/android/i.test(ua)) device = "Android";
         else if (/iphone|ipad|ipod/i.test(ua)) device = "iPhone/iPad";
         else if (/windows/i.test(ua)) device = "Windows PC";
@@ -728,22 +720,68 @@
         const overlay = document.getElementById('constructionOverlay');
         overlay.style.display = 'flex';
         if (isAdmin) { overlay.style.display = 'none'; return; }
+        if (!isFirebaseReady || !accessRef) return;
+
         const params = new URLSearchParams(window.location.search);
         const urlKey = params.get('key');
+        const urlPerm = params.get('perm');
         const myDevice = getDeviceId();
-        if (!isFirebaseReady || !accessRef) return;
+
         try {
+            if (urlPerm && permanentRef) {
+                const permSnap = await permanentRef.child(urlPerm).once('value');
+                const perm = permSnap.val();
+                if (perm) {
+                    if (!perm.deviceId) {
+                        await permanentRef.child(urlPerm).update({
+                            deviceId: myDevice,
+                            deviceInfo: getDeviceInfo(),
+                            firstUsed: Date.now(),
+                            status: 'active'
+                        });
+                        await logHistory('perm_' + urlPerm, myDevice, `Permanent access दिया (${perm.name})`);
+                        grantAccess();
+                        return;
+                    } else if (perm.deviceId === myDevice) {
+                        grantAccess();
+                        return;
+                    } else {
+                        await logHistory('perm_' + urlPerm, myDevice, `अनधिकृत प्रयास (Permanent: ${perm.name})`, true);
+                    }
+                }
+            }
+
+            if (permanentRef) {
+                const allPermSnap = await permanentRef.once('value');
+                const allPerm = allPermSnap.val() || {};
+                for (const token in allPerm) {
+                    const u = allPerm[token];
+                    if (u.deviceId === myDevice && u.status === 'active') {
+                        grantAccess();
+                        return;
+                    }
+                }
+            }
+
             const snap = await accessRef.once('value');
             const data = snap.val() || {};
             if (urlKey && data.token && urlKey === data.token) {
                 if (!data.deviceId) {
                     await accessRef.update({ deviceId: myDevice, firstUsed: Date.now(), deviceInfo: getDeviceInfo() });
                     await logHistory(data.token, myDevice, 'पहली बार खोला');
-                    grantAccess(); return;
-                } else if (data.deviceId === myDevice) { grantAccess(); return; }
-                else { await logHistory(data.token, myDevice, 'अनधिकृत प्रयास (गलत डिवाइस)', true); }
+                    grantAccess();
+                    return;
+                } else if (data.deviceId === myDevice) {
+                    grantAccess();
+                    return;
+                } else {
+                    await logHistory(data.token, myDevice, 'अनधिकृत प्रयास (गलत डिवाइस)', true);
+                }
             }
-            if (!urlKey && data.token && data.deviceId === myDevice) { grantAccess(); return; }
+            if (!urlKey && !urlPerm && data.token && data.deviceId === myDevice) {
+                grantAccess();
+                return;
+            }
         } catch(e) { console.warn('Access check failed:', e); }
     }
 
@@ -757,7 +795,7 @@
 
     function grantAccess() {
         document.getElementById('constructionOverlay').style.display = 'none';
-        if (window.location.search.includes('key=')) window.history.replaceState({}, document.title, window.location.pathname);
+        if (window.location.search) window.history.replaceState({}, document.title, window.location.pathname);
     }
 
     async function openAccessLinkModal() { if (!isAdmin) return; document.getElementById('accessLinkModal').style.display = 'flex'; await refreshAccessLinkUI(); }
@@ -767,7 +805,7 @@
         const linkBox = document.getElementById('currentLinkBox');
         const statusBox = document.getElementById('linkStatusBox');
         const linkInput = document.getElementById('generatedLinkInput');
-        if (!isFirebaseReady || !accessRef) { statusBox.innerHTML = '⚠️ Firebase उपलब्ध नहीं है।'; linkBox.style.display = 'none'; return; }
+        if (!isFirebaseReady || !accessRef) { statusBox.innerHTML = '⚠️ Firebase नहीं है।'; linkBox.style.display = 'none'; return; }
         try {
             const snap = await accessRef.once('value');
             const data = snap.val() || {};
@@ -775,84 +813,195 @@
                 linkInput.value = window.location.origin + window.location.pathname + '?key=' + data.token;
                 linkBox.style.display = 'block';
                 if (data.deviceId) {
-                    statusBox.innerHTML = `🟢 यह लिंक बंध चुका है।<br><b>डिवाइस:</b> ${data.deviceInfo || '—'}<br><b>पहली बार खोला:</b> ${formatDateTime(data.firstUsed)}<br><br>नए व्यक्ति को देने के लिए नया लिंक बनाएं।`;
+                    statusBox.innerHTML = `🟢 यह लिंक बंध चुका है।<br><b>डिवाइस:</b> ${data.deviceInfo || '—'}<br><b>पहली बार:</b> ${formatDateTime(data.firstUsed)}<br>नए व्यक्ति के लिए नया बनाएं।`;
                     statusBox.style.background = '#e8f8f0'; statusBox.style.borderLeftColor = '#27ae60';
                 } else {
-                    statusBox.innerHTML = '🟡 यह लिंक तैयार है, अभी किसी ने नहीं खोला।';
+                    statusBox.innerHTML = '🟡 लिंक तैयार, अभी किसी ने नहीं खोला।';
                     statusBox.style.background = '#fff9e6'; statusBox.style.borderLeftColor = '#f39c12';
                 }
             } else {
                 linkBox.style.display = 'none';
-                statusBox.innerHTML = '⏳ अभी कोई सक्रिय लिंक नहीं है।';
+                statusBox.innerHTML = '⏳ अभी कोई लिंक नहीं।';
                 statusBox.style.background = '#fff9e6'; statusBox.style.borderLeftColor = '#f39c12';
             }
-        } catch(e) { statusBox.innerHTML = '❌ डेटा पढ़ने में समस्या।'; }
+        } catch(e) { statusBox.innerHTML = '❌ समस्या।'; }
     }
 
     async function generateAccessLink() {
         if (!isAdmin) return;
-        if (!isFirebaseReady || !accessRef) { alert('❌ Firebase उपलब्ध नहीं है!'); return; }
-        // file:// check
+        if (!isFirebaseReady || !accessRef) { alert('❌ Firebase उपलब्ध नहीं!'); return; }
         if (window.location.protocol === 'file:') {
-            alert('⚠️ ध्यान दें!\n\nआप इस फाइल को अपने कंप्यूटर से खोल रहे हैं (file:// mode)।\n\nऐसा लिंक बन तो जाएगा, लेकिन किसी और के फोन पर नहीं खुलेगा।\n\nलिंक भेजने के लिए इसे GitHub पर डालना जरूरी है।');
+            if (!confirm('⚠️ आप local file से खोल रहे हैं!\n\nलिंक बनेगा, पर किसी और के फोन पर नहीं खुलेगा।\n\nलिंक भेजने के लिए GitHub पर डालें।\n\nफिर भी बनाएं?')) return;
+        } else {
+            if (!confirm('⚠️ नया बनाने पर पुराना तुरंत बंद होगा। जारी?')) return;
         }
-        if (!confirm('⚠️ नया लिंक बनाने पर पुराना लिंक तुरंत बंद हो जाएगा। जारी रखें?')) return;
         const newToken = 'acc_' + Math.random().toString(36).substr(2, 12) + Date.now().toString(36);
         try {
-            await accessRef.set({ token: newToken, deviceId: null, createdAt: Date.now(), createdBy: 'admin', deviceInfo: null, firstUsed: null });
-            await historyRef.child(newToken).push().set({ deviceId: '—', deviceInfo: '—', action: 'नया लिंक बनाया गया', denied: false, timestamp: Date.now() });
+            await accessRef.set({ token: newToken, deviceId: null, createdAt: Date.now(), deviceInfo: null, firstUsed: null });
+            await historyRef.child(newToken).push().set({ deviceId: '—', deviceInfo: '—', action: 'नया Temporary Link बनाया', denied: false, timestamp: Date.now() });
             await refreshAccessLinkUI();
-            alert('✅ नया एक्सेस लिंक बन गया!');
-        } catch(e) { alert('❌ लिंक बनाने में समस्या: ' + e.message); }
+            alert('✅ Temporary Link बना!');
+        } catch(e) { alert('❌ ' + e.message); }
     }
 
     function copyAccessLink() {
         const input = document.getElementById('generatedLinkInput');
         if (!input.value) return;
         input.select(); input.setSelectionRange(0, 99999);
-        try { document.execCommand('copy'); alert('📋 लिंक कॉपी हो गया!'); }
-        catch(e) { navigator.clipboard.writeText(input.value).then(() => alert('📋 लिंक कॉपी हो गया!')); }
+        try { document.execCommand('copy'); alert('📋 कॉपी हो गया!'); }
+        catch(e) { navigator.clipboard.writeText(input.value).then(() => alert('📋 कॉपी हो गया!')); }
     }
 
-    /* ============ सुधरा हुआ WhatsApp Share — Link पहले, अलग लाइन पर ============ */
     function shareWhatsApp() {
         const link = document.getElementById('generatedLinkInput').value;
-        if (!link) { alert('⚠️ पहले लिंक बनाएं!'); return; }
-
-        // file:// लिंक पर चेतावनी
-        if (link.startsWith('file:')) {
-            if (!confirm('⚠️ यह लोकल फाइल का लिंक है!\n\nयह WhatsApp पर सही से नहीं खुलेगा।\n\nक्या आप फिर भी भेजना चाहते हैं?\n\n(बेहतर होगा — पहले GitHub पर deploy करें)')) return;
-        }
-
-        // Link सबसे पहले, अपनी अलग लाइन पर, उसके बाद संदेश
-        const message = link + '\n\n' +
-            '🙏 नमस्ते!\n' +
-            'वंशावली देखने के लिए ऊपर वाले लिंक पर क्लिक करें।\n\n' +
-            '⚠️ यह लिंक सिर्फ आपके लिए है। कृपया किसी और को न भेजें।';
-
-        const encoded = encodeURIComponent(message);
-        window.open('https://wa.me/?text=' + encoded, '_blank');
+        if (!link) { alert('पहले लिंक बनाएं!'); return; }
+        const msg = link + '\n\n🙏 नमस्ते!\nवंशावली देखने के लिए ऊपर वाले लिंक पर क्लिक करें।\n\n⚠️ यह लिंक सिर्फ आपके लिए है।';
+        window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
     }
 
-    /* Web Share API — मोबाइल पर native share sheet (सबसे भरोसेमंद) */
     async function shareNative() {
         const link = document.getElementById('generatedLinkInput').value;
-        if (!link) { alert('⚠️ पहले लिंक बनाएं!'); return; }
-
+        if (!link) { alert('पहले लिंक बनाएं!'); return; }
         if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: 'वंशावली - केदार सिंह बिष्ट परिवार',
-                    text: 'वंशावली देखने के लिए यह लिंक खोलें (सिर्फ आपके लिए है):',
-                    url: link
-                });
-            } catch(e) { if (e.name !== 'AbortError') console.warn('Share failed:', e); }
+            try { await navigator.share({ title: 'वंशावली', text: 'वंशावली देखें (सिर्फ आपके लिए):', url: link }); }
+            catch(e) { if (e.name !== 'AbortError') console.warn(e); }
         } else {
-            // Fallback: कॉपी करें
-            navigator.clipboard.writeText(link).then(() => {
-                alert('📋 लिंक कॉपी हो गया!\n\nअब WhatsApp / SMS / Email में paste करके भेजें।');
-            }).catch(() => alert('❌ कॉपी नहीं हो पाया। मैन्युअल कॉपी करें।'));
+            navigator.clipboard.writeText(link).then(() => alert('📋 कॉपी हो गया! अब WhatsApp में paste करें।'));
         }
+    }
+
+    function openPermanentModal() { if (!isAdmin) return; document.getElementById('permanentModal').style.display = 'flex'; loadPermanentUsers(); }
+    function closePermanentModal() { document.getElementById('permanentModal').style.display = 'none'; }
+
+    async function createPermanentLink() {
+        if (!isAdmin) return;
+        if (!isFirebaseReady || !permanentRef) { alert('❌ Firebase उपलब्ध नहीं!'); return; }
+        const name = prompt("उस व्यक्ति का नाम लिखें जिसे Permanent Access देना है:\n\n(उदा. राम सिंह, श्याम की पत्नी, भाई साहब)");
+        if (!name || !name.trim()) return;
+
+        const newToken = 'perm_' + Math.random().toString(36).substr(2, 12) + Date.now().toString(36);
+        try {
+            await permanentRef.child(newToken).set({
+                name: name.trim(),
+                createdAt: Date.now(),
+                deviceId: null,
+                deviceInfo: null,
+                firstUsed: null,
+                status: 'pending'
+            });
+            await historyRef.child('perm_' + newToken).push().set({
+                deviceId: '—', deviceInfo: '—',
+                action: `नया Permanent Link बनाया (${name.trim()})`,
+                denied: false, timestamp: Date.now()
+            });
+            alert(`✅ "${name.trim()}" के लिए Permanent Link बना!\n\nअब लिंक कॉपी/WhatsApp करके उन्हें भेजें।`);
+            loadPermanentUsers();
+        } catch(e) { alert('❌ ' + e.message); }
+    }
+
+    async function loadPermanentUsers() {
+        const content = document.getElementById('permanentListContent');
+        content.innerHTML = '<div style="text-align:center; color:#7f8c8d; padding:20px; font-size:13px;">लोड हो रहा है...</div>';
+        if (!isFirebaseReady || !permanentRef) {
+            content.innerHTML = '<div style="text-align:center; color:#e74c3c; padding:20px; font-size:13px;">❌ Firebase उपलब्ध नहीं।</div>';
+            return;
+        }
+        try {
+            const snap = await permanentRef.once('value');
+            const data = snap.val() || {};
+            const tokens = Object.keys(data);
+
+            if (tokens.length === 0) {
+                content.innerHTML = '<div style="text-align:center; color:#7f8c8d; padding:24px 15px; font-size:13px; background:#f8fafc; border-radius:8px; border:1px dashed #cbd5e0;">ℹ️ अभी कोई Permanent User नहीं है।<br><br>ऊपर "➕ नया Permanent Link बनाएं" दबाएं।</div>';
+                return;
+            }
+
+            const entries = tokens.map(t => ({ token: t, ...data[t] }));
+            const pending = entries.filter(e => e.status !== 'active' || !e.deviceId).sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
+            const active = entries.filter(e => e.status === 'active' && e.deviceId).sort((a,b) => (b.firstUsed||0) - (a.firstUsed||0));
+
+            let html = '';
+
+            if (pending.length > 0) {
+                html += `<h4 style="margin: 8px 0 8px; color:#e67e22; font-size:13px;">⏳ बाकी लिंक (${pending.length}) — जो अभी नहीं खोले गए:</h4>`;
+                pending.forEach(p => {
+                    html += `
+                        <div class="perm-item pending">
+                            <div class="perm-info">
+                                <div class="perm-name">${escapeContactHtml(p.name || 'बिना नाम')}</div>
+                                <div class="perm-meta">बनाया: ${formatDateTime(p.createdAt)}</div>
+                            </div>
+                            <div style="display:flex; gap:5px;">
+                                <button class="perm-btn" style="background:#3498db;" onclick="copyPermanentLink('${p.token}')" title="लिंक कॉपी">📋</button>
+                                <button class="perm-btn" style="background:#25D366;" onclick="sharePermWhatsApp('${p.token}')" title="WhatsApp">📱</button>
+                                <button class="perm-btn" style="background:#e74c3c;" onclick="deletePermanentUser('${p.token}', '${escapeContactHtml(p.name || '')}')" title="हटाएं">🗑️</button>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            if (active.length > 0) {
+                html += `<h4 style="margin: 16px 0 8px; color:#27ae60; font-size:13px;">✅ सक्रिय यूज़र्स (${active.length}) — हमेशा के लिए जुड़े:</h4>`;
+                active.forEach(p => {
+                    html += `
+                        <div class="perm-item active">
+                            <div class="perm-info">
+                                <div class="perm-name">${escapeContactHtml(p.name || 'बिना नाम')}</div>
+                                <div class="perm-meta">📱 ${escapeContactHtml(p.deviceInfo || '—')} — जुड़ा: ${formatDateTime(p.firstUsed)}</div>
+                            </div>
+                            <div style="display:flex; gap:5px;">
+                                <button class="perm-btn" style="background:#3498db;" onclick="copyPermanentLink('${p.token}')" title="लिंक फिर से कॉपी">📋</button>
+                                <button class="perm-btn" style="background:#e74c3c;" onclick="deletePermanentUser('${p.token}', '${escapeContactHtml(p.name || '')}')" title="हटाएं">🗑️ हटाएं</button>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            html += `<div style="text-align:center; font-size:11px; color:#7f8c8d; margin-top:12px;">कुल: ${pending.length} बाकी + ${active.length} सक्रिय</div>`;
+            content.innerHTML = html;
+        } catch(e) {
+            content.innerHTML = '<div style="text-align:center; color:#e74c3c; padding:20px; font-size:13px;">❌ लोड नहीं हो पाया।</div>';
+            console.warn(e);
+        }
+    }
+
+    function copyPermanentLink(token) {
+        const link = window.location.origin + window.location.pathname + '?perm=' + token;
+        navigator.clipboard.writeText(link).then(() => {
+            alert('📋 Permanent Link कॉपी हो गया!\n\nअब WhatsApp / SMS में paste करके भेजें।');
+        }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = link; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); alert('📋 कॉपी हो गया!'); } catch(e) { alert('मैन्युअल कॉपी करें:\n' + link); }
+            document.body.removeChild(ta);
+        });
+    }
+
+    async function sharePermWhatsApp(token) {
+        let name = 'सदस्य';
+        try {
+            const snap = await permanentRef.child(token).once('value');
+            const d = snap.val();
+            if (d && d.name) name = d.name;
+        } catch(e) {}
+        const link = window.location.origin + window.location.pathname + '?perm=' + token;
+        const msg = link + `\n\n🙏 नमस्ते ${name} जी!\nवंशावली हमेशा देखने के लिए ऊपर वाले लिंक पर क्लिक करें।\n\n✅ यह लिंक आपके लिए हमेशा के लिए है — बार-बार नहीं मांगना पड़ेगा।\n⚠️ कृपया किसी और को न भेजें।`;
+        window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    async function deletePermanentUser(token, name) {
+        if (!isAdmin) return;
+        if (!confirm(`⚠️ "${name}" का Permanent Access हटाएं?\n\nवह फिर वंशावली नहीं खोल पाएगा (जब तक नया लिंक न मिले)।\n\nपक्का?`)) return;
+        try {
+            await permanentRef.child(token).remove();
+            await historyRef.child('perm_' + token).push().set({
+                deviceId: '—', deviceInfo: '—',
+                action: `Permanent User हटाया (${name})`,
+                denied: false, timestamp: Date.now()
+            });
+            loadPermanentUsers();
+            alert('✅ हटा दिया गया!');
+        } catch(e) { alert('❌ हटाने में समस्या: ' + e.message); }
     }
 
     function openHistoryModal() { if (!isAdmin) return; document.getElementById('historyModal').style.display = 'flex'; loadHistory(); }
@@ -861,7 +1010,7 @@
     async function loadHistory() {
         const content = document.getElementById('historyContent');
         content.innerHTML = '<div style="text-align:center; color:#7f8c8d; padding:20px; font-size:13px;">लोड हो रहा है...</div>';
-        if (!isFirebaseReady || !historyRef) { content.innerHTML = '<div style="text-align:center; color:#e74c3c; padding:20px; font-size:13px;">❌ Firebase उपलब्ध नहीं है।</div>'; return; }
+        if (!isFirebaseReady || !historyRef) { content.innerHTML = '<div style="text-align:center; color:#e74c3c; padding:20px; font-size:13px;">❌ Firebase उपलब्ध नहीं।</div>'; return; }
         try {
             const snap = await historyRef.once('value');
             const data = snap.val() || {};
@@ -871,33 +1020,41 @@
                 Object.keys(entries).forEach(k => allEntries.push({ token, ...entries[k] }));
             });
             allEntries.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
             const currentSnap = await accessRef.once('value');
             const currentData = currentSnap.val() || {};
             const currentToken = currentData.token;
+
             if (allEntries.length === 0) {
-                content.innerHTML = '<div style="text-align:center; color:#7f8c8d; padding:20px; font-size:13px; background:#f8fafc; border-radius:8px; border:1px dashed #cbd5e0;">ℹ️ अभी कोई इतिहास उपलब्ध नहीं है।</div>';
+                content.innerHTML = '<div style="text-align:center; color:#7f8c8d; padding:20px; font-size:13px; background:#f8fafc; border-radius:8px; border:1px dashed #cbd5e0;">ℹ️ कोई इतिहास नहीं।</div>';
                 return;
             }
+
             let html = '<div style="overflow-x:auto;"><table class="history-table"><thead><tr><th>#</th><th>समय</th><th>डिवाइस</th><th>कार्य</th><th>स्थिति</th></tr></thead><tbody>';
             allEntries.forEach((e, i) => {
                 const isCurrent = e.token === currentToken;
-                const statusBadge = e.denied ? '<span class="history-badge" style="background:#fadbd8; color:#a93226;">❌ अस्वीकृत</span>'
-                    : (isCurrent ? '<span class="history-badge badge-active">🟢 सक्रिय</span>' : '<span class="history-badge badge-old">⚪ पुराना</span>');
-                const shortToken = e.token ? e.token.substr(0, 12) + '...' : '—';
-                html += `<tr><td>${i + 1}</td><td style="white-space:nowrap; font-size:11px;">${formatDateTime(e.timestamp)}</td><td style="font-size:11px;">${escapeContactHtml(e.deviceInfo || '—')}<br><span style="font-size:9px; color:#95a5a6;">${escapeContactHtml((e.deviceId || '').substr(0, 14))}</span></td><td style="font-size:11px;">${escapeContactHtml(e.action || '—')}<br><span style="font-size:9px; color:#95a5a6;">🔑 ${escapeContactHtml(shortToken)}</span></td><td>${statusBadge}</td></tr>`;
+                const isPermanent = e.token && e.token.startsWith('perm_');
+                let badge;
+                if (e.denied) badge = '<span class="history-badge" style="background:#fadbd8; color:#a93226;">❌ अस्वीकृत</span>';
+                else if (isPermanent) badge = '<span class="history-badge" style="background:#e8daef; color:#6c3483;">👥 Permanent</span>';
+                else if (isCurrent) badge = '<span class="history-badge badge-active">🟢 सक्रिय</span>';
+                else badge = '<span class="history-badge badge-old">⚪ Temporary</span>';
+
+                const shortToken = e.token ? e.token.substr(0, 14) + '...' : '—';
+                html += `<tr><td>${i + 1}</td><td style="white-space:nowrap; font-size:11px;">${formatDateTime(e.timestamp)}</td><td style="font-size:11px;">${escapeContactHtml(e.deviceInfo || '—')}<br><span style="font-size:9px; color:#95a5a6;">${escapeContactHtml((e.deviceId || '').substr(0, 14))}</span></td><td style="font-size:11px;">${escapeContactHtml(e.action || '—')}<br><span style="font-size:9px; color:#95a5a6;">🔑 ${escapeContactHtml(shortToken)}</span></td><td>${badge}</td></tr>`;
             });
             html += '</tbody></table></div>';
             html += `<div style="text-align:center; font-size:11px; color:#7f8c8d; margin-top:10px;">कुल ${allEntries.length} रिकॉर्ड</div>`;
             content.innerHTML = html;
-        } catch(e) { content.innerHTML = '<div style="text-align:center; color:#e74c3c; padding:20px; font-size:13px;">❌ इतिहास लोड नहीं हो पाया।</div>'; }
+        } catch(e) { content.innerHTML = '<div style="text-align:center; color:#e74c3c; padding:20px; font-size:13px;">❌ लोड नहीं हो पाया।</div>'; }
     }
 
     async function clearHistory() {
         if (!isAdmin) return;
-        if (!confirm('⚠️ पूरा इतिहास मिटाना है? वापस नहीं आएगा।')) return;
+        if (!confirm('⚠️ पूरा इतिहास मिटाना है?')) return;
         if (!isFirebaseReady || !historyRef) return;
-        try { await historyRef.remove(); loadHistory(); alert('✅ इतिहास साफ!'); }
-        catch(e) { alert('❌ साफ नहीं हो पाया।'); }
+        try { await historyRef.remove(); loadHistory(); alert('✅ साफ!'); }
+        catch(e) { alert('❌ समस्या।'); }
     }
 
     function updateEditableState() {
@@ -910,7 +1067,6 @@
 
     let timer = null;
     function onInput() { if (!isAdmin) return; clearTimeout(timer); timer = setTimeout(() => saveState(true), 500); }
-
     function undoAction() { if (!isAdmin || undoStack.length <= 1) return; redoStack.push(undoStack.pop()); applyState(undoStack[undoStack.length - 1]); }
     function redoAction() { if (!isAdmin || redoStack.length === 0) return; const next = redoStack.pop(); undoStack.push(next); applyState(next); }
     function applyState(html) {
@@ -947,14 +1103,14 @@
                     <div class="child-name" contenteditable="true">-</div>
                 </div>
                 <div class="action-btn-container">
-                    <button class="switch-toggle-btn switch-off" onclick="toggleSwitch(this)" data-tip="प्राइवेसी टॉगल: OFF रहने पर सिर्फ एडमिन देखे, ON करने पर पब्लिक भी।">⚪ OFF</button>
-                    <button class="info-btn" onclick="openDetailsModal(this)" data-tip="फोन, पता, फोटो जोड़ें/बदलें।">📝 विवरण</button>
-                    <button class="toggle-btn" onclick="toggleVisibility(this)" data-tip="संतान दिखाएं या छुपाएं।">संतान देखें 🔽</button>
-                    <button class="delete-btn" onclick="deleteBox(this)" data-tip="⚠️ हटा दें। वापस नहीं आएगा।">X</button>
+                    <button class="switch-toggle-btn switch-off" onclick="toggleSwitch(this)" data-tip="प्राइवेसी: OFF = सिर्फ एडमिन, ON = पब्लिक भी।">⚪ OFF</button>
+                    <button class="info-btn" onclick="openDetailsModal(this)" data-tip="फोन, पता, फोटो।">📝 विवरण</button>
+                    <button class="toggle-btn" onclick="toggleVisibility(this)" data-tip="संतान दिखाएं/छुपाएं।">संतान देखें 🔽</button>
+                    <button class="delete-btn" onclick="deleteBox(this)" data-tip="⚠️ हटाएं।">X</button>
                 </div>
             </div>
             <div class="sub-children-container">
-                <button class="add-btn" onclick="addNewSubBox(this)" data-tip="इस सदस्य के नीचे संतान जोड़ें।">+ संतान जोड़ें</button>
+                <button class="add-btn" onclick="addNewSubBox(this)" data-tip="संतान जोड़ें।">+ संतान जोड़ें</button>
             </div>`;
     }
 
@@ -989,7 +1145,7 @@
 
     function deleteBox(button) {
         if (!isAdmin) return;
-        if (confirm("क्या आप इसे हटाना चाहते हैं?")) {
+        if (confirm("क्या हटाना है?")) {
             const card = button.closest('.child-card');
             if (selectedCard === card) selectedCard = null;
             card.remove();
